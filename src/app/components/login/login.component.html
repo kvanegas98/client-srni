@@ -4,39 +4,45 @@
 <section class="login">
     <section class="login__container">
         <h2>Login</h2>
-        <form class="login__container--form">
-            <input class="input" type="text" placeholder="Email" />
-            <input class="input" type="text" placeholder="Password" />
-            <button class="button-1">Login</button>
-            <div class="login__container--remember">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="login__container--form">
+            <input class="input" type="text" placeholder="Email" type="email" name="email" #email="ngModel" [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+            <span *ngIf="!email.valid && email.touched">
+				El email no es correcto
+			</span>
+            <input class="input" type="password" placeholder="Password" name="password" #password="ngModel" [(ngModel)]="user.password" required />
+            <span *ngIf="!password.valid && password.touched">
+				 La contraseña es obligatoria
+			</span>
+            <button class=" button-1 ">Login</button>
+            <div class="login__container--remember ">
                 <label>
-              <input
-                type="checkbox"
-                name=""
-                id="cbox1"
-                value="checkbox"
-              />Remember me
+             <!--  <input
+                type="checkbox "
+                name=" "
+                id="cbox1 "
+                value="checkbox "
+              />Remember me -->
             </label>
-                <a href="/">I forgot my password</a>
+                <a href="/ ">I forgot my password</a>
             </div>
         </form>
-        <section class="login_container--social-media">
+        <section class="login_container--social-media ">
             <div>
-                <img src="../assets/img/google-icon.png" alt="google" /> Login with Gooogle
+                <img src="../assets/img/google-icon.png " alt="google " /> Login with Gooogle
             </div>
             <div>
-                <img src="../assets/img/twitter-icon.png" alt="google" /> Login with Twitter
+                <img src="../assets/img/twitter-icon.png " alt="google " /> Login with Twitter
             </div>
         </section>
-        <p class="login_container--register">
-            You dont have an account <a [routerLink]="['/registro']" [routerLinkActive]="['active']">
+        <p class="login_container--register ">
+            You dont have an account <a [routerLink]="[ '/registro'] " [routerLinkActive]="[ 'active'] ">
                          SignUp
                     </a>
         </p>
     </section>
 </section>
-<footer class="footer">
-    <a href="/">Terms and conditions</a>
-    <a href="/">Terms of privacy</a>
-    <a href="/">Help</a>
+<footer class="footer ">
+    <a href="/ ">Terms and conditions</a>
+    <a href="/ ">Terms of privacy</a>
+    <a href="/ ">Help</a>
 </footer>

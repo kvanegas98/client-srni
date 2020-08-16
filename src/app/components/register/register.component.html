@@ -54,24 +54,16 @@
  -->
             <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="mr4 absolute-center ">
                 <p>
-                    <label>Primer Nombre</label>
-                    <input type="text" name="primerNombre" #primerNombre="ngModel" [(ngModel)]="user.primerNombre" class="form-control" required />
-                    <span *ngIf="!primerNombre.valid && primerNombre.touched">
+                    <label> Nombre</label>
+                    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" class="form-control" required />
+                    <span *ngIf="!nombre.valid && nombre.touched">
 				El primer nombre es obligatorio!!
 			</span>
                 </p>
 
                 <p>
-                    <label>Segundo Nombre</label>
-                    <input type="text" name="segundoNombre" #segundoNombre="ngModel" [(ngModel)]="user.segundoNombre" class="form-control" required />
-                    <span *ngIf="!segundoNombre.valid && segundoNombre.touched">
-				El nombre es obligatorio!!
-			</span>
-                </p>
-
-                <p>
                     <label>Primer Apellido</label>
-                    <input type="text" name="primerApellido" #primerApellido="ngModel" [(ngModel)]="user.primerApellido" class="form-control" required />
+                    <input type="text" name="primerApellido" #primerApellido="ngModel" [(ngModel)]="user.Papellido" class="form-control" required />
                     <span *ngIf="!primerApellido.valid && primerApellido.touched">
 				El primer Apellido es obligatorio!!
 			</span>
@@ -79,7 +71,7 @@
 
                 <p>
                     <label>Segundo Apellido</label>
-                    <input type="text" name="segundoApellido" #segundoApellido="ngModel" [(ngModel)]="user.segundoApellido" class="form-control" required />
+                    <input type="text" name="segundoApellido" #segundoApellido="ngModel" [(ngModel)]="user.Sapellido" class="form-control" required />
                     <span *ngIf="!segundoApellido.valid && segundoApellido.touched">
 				El segundo Apellido es obligatorio!!
 			</span>
@@ -120,7 +112,7 @@
 
                 <p>
                     <label>Telefono</label>
-                    <input type="text" name="tel" #tel="ngModel" [(ngModel)]="user.tel" class="form-control" required pattern="^[2]\d{7}$" />
+                    <input type="text" name="tel" #tel="ngModel" [(ngModel)]="user.telefono" class="form-control" required pattern="^[2]\d{7}$" />
                     <span *ngIf="!tel.valid && tel.touched">
 				El numero de telefono es incorrecto
 			</span>
@@ -150,7 +142,6 @@
 				Campo vacio
 			</span>
                 </p>
-
 
                 <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!registerForm.form.valid" />
             </form>
