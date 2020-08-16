@@ -49,7 +49,7 @@
             </div>
 
             <div class="alert alert-danger" *ngIf="status == 'error'">
-                El registro no ha podido completarse, quizas tu email o nickname ya esté en uso, intentalo de nuevo con otros datos
+                El registro no ha podido completarse, quizas tu email ya esté en uso, intentalo de nuevo con otros datos
             </div>
 
             <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="mr4 absolute-center ">

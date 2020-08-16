@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
     console.log(this.user);
     this._userService.signup(this.user).subscribe(
       (response) => {
-        this.identity = response.user;
+        this.identity = response.usuario;
+        console.log(response);
 
         console.log(this.identity);
 
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
         } else {
           // PERSISTIR DATOS DEL USUARIO
           localStorage.setItem('identity', JSON.stringify(this.identity));
+          this.status = 'success';
 
           // Conseguir el token
           this.getToken();

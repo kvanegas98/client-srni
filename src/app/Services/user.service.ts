@@ -19,7 +19,8 @@ export class UserService {
     let params = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this._http.post(this.url + 'usuario', params, { headers: headers });
+    //  return this._http.post(this.url + 'usuario', params, { headers: headers });
+    return this._http.post(this.url + 'usuario', user);
   }
 
   signup(user, gettoken = null): Observable<any> {
@@ -30,7 +31,8 @@ export class UserService {
     let params = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this._http.post(this.url + 'login', params, { headers: headers });
+    // return this._http.post(this.url + 'login', params, { headers: headers });
+    return this._http.post(this.url + 'login', user);
   }
 
   getIdentity() {
