@@ -4,6 +4,13 @@
 <section class="login">
     <section class="login__container">
         <h2>Login</h2>
+        <div class="alert alert-success" *ngIf="status == 'success'">
+            Te has identificado correctamente, bienvenido!!
+        </div>
+
+        <div class="alert alert-danger" *ngIf="status == 'error'">
+            No te has podido identificar correctamente!!
+        </div>
         <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="login__container--form">
             <input class="input" type="text" placeholder="Email" type="email" name="email" #email="ngModel" [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
             <span *ngIf="!email.valid && email.touched">

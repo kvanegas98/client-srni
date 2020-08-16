@@ -22,7 +22,7 @@ export class UserService {
     return this._http.post(this.url + 'usuario', params, { headers: headers });
   }
 
-  /*signup(user, gettoken = null): Observable<any> {
+  signup(user, gettoken = null): Observable<any> {
     if (gettoken != null) {
       user.gettoken = gettoken;
     }
@@ -47,6 +47,7 @@ export class UserService {
 
   getToken() {
     let token = localStorage.getItem('token');
+    console.log(this.token);
 
     if (token != 'undefined') {
       this.token = token;
@@ -57,19 +58,19 @@ export class UserService {
     return this.token;
   }
 
-  getStats() {
-    let stats = JSON.parse(localStorage.getItem('stats'));
+  /* getStats() {
+       let stats = JSON.parse(localStorage.getItem('stats'));
+   
+       if (stats != 'undefined') {
+         this.stats = stats;
+       } else {
+         this.stats = null;
+       }
+   
+       return this.stats;
+     }*/
 
-    if (stats != 'undefined') {
-      this.stats = stats;
-    } else {
-      this.stats = null;
-    }
-
-    return this.stats;
-  }
-
-  getCounters(userId = null): Observable<any> {
+  /* getCounters(userId = null): Observable<any> {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', this.getToken());
@@ -81,32 +82,33 @@ export class UserService {
     } else {
       return this._http.get(this.url + 'counters', { headers: headers });
     }
-  }
-
-  updateUser(user: User): Observable<any> {
-    let params = JSON.stringify(user);
-    let headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Authorization', this.getToken());
-
-    return this._http.put(this.url + 'update-user/' + user._id, params, {
-      headers: headers,
-    });
-  }
-
-  getUsers(page = null): Observable<any> {
-    let headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Authorization', this.getToken());
-
-    return this._http.get(this.url + 'users/' + page, { headers: headers });
-  }
-
-  getUser(id): Observable<any> {
-    let headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Authorization', this.getToken());
-
-    return this._http.get(this.url + 'user/' + id, { headers: headers });
   }*/
+
+  /*updateUser(user: User): Observable<any> {
+       let params = JSON.stringify(user);
+       let headers = new HttpHeaders()
+         .set('Content-Type', 'application/json')
+         .set('Authorization', this.getToken());
+   
+       return this._http.put(this.url + 'update-user/' + user._id, params, {
+         headers: headers,
+       });
+     }
+   
+     getUsers(page = null): Observable<any> {
+       let headers = new HttpHeaders()
+         .set('Content-Type', 'application/json')
+         .set('Authorization', this.getToken());
+   
+       return this._http.get(this.url + 'users/' + page, { headers: headers });
+     }
+   
+     getUser(id): Observable<any> {
+       let headers = new HttpHeaders()
+         .set('Content-Type', 'application/json')
+         .set('Authorization', this.getToken());
+   
+       return this._http.get(this.url + 'user/' + id, { headers: headers });
+     }
+   }*/
 }

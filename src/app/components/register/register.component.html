@@ -44,14 +44,14 @@
             <h1 class="h1-strong text-center">{{title}}</h1>
 
 
-            <!--  <div class="alert alert-success" *ngIf="status == 'success'">
+            <div class="alert alert-success" *ngIf="status == 'success'">
                 Registro completado correctamente, <a [routerLink]="['/login']">identificate aquí</a>
             </div>
 
             <div class="alert alert-danger" *ngIf="status == 'error'">
                 El registro no ha podido completarse, quizas tu email o nickname ya esté en uso, intentalo de nuevo con otros datos
             </div>
- -->
+
             <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="mr4 absolute-center ">
                 <p>
                     <label> Nombre</label>
