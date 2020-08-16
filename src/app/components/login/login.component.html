@@ -1,0 +1,42 @@
+<header class="login_header">
+    <img class="header_img" src="../assets/img/logo-platzi.png" />
+</header>
+<section class="login">
+    <section class="login__container">
+        <h2>Login</h2>
+        <form class="login__container--form">
+            <input class="input" type="text" placeholder="Email" />
+            <input class="input" type="text" placeholder="Password" />
+            <button class="button-1">Login</button>
+            <div class="login__container--remember">
+                <label>
+              <input
+                type="checkbox"
+                name=""
+                id="cbox1"
+                value="checkbox"
+              />Remember me
+            </label>
+                <a href="/">I forgot my password</a>
+            </div>
+        </form>
+        <section class="login_container--social-media">
+            <div>
+                <img src="../assets/img/google-icon.png" alt="google" /> Login with Gooogle
+            </div>
+            <div>
+                <img src="../assets/img/twitter-icon.png" alt="google" /> Login with Twitter
+            </div>
+        </section>
+        <p class="login_container--register">
+            You dont have an account <a [routerLink]="['/registro']" [routerLinkActive]="['active']">
+                         SignUp
+                    </a>
+        </p>
+    </section>
+</section>
+<footer class="footer">
+    <a href="/">Terms and conditions</a>
+    <a href="/">Terms of privacy</a>
+    <a href="/">Help</a>
+</footer>
