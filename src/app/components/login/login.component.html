@@ -13,7 +13,7 @@
             <span *ngIf="!password.valid && password.touched">
 				 La contraseña es obligatoria
 			</span>
-            <button class=" button-1 ">Login</button>
+            <button [disabled]="!loginForm.form.valid" class=" button-1 ">Login</button>
             <div class="login__container--remember ">
                 <label>
              <!--  <input
