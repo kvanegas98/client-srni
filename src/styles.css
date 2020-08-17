@@ -390,8 +390,21 @@ ul:hover {
 
 /*Cabecera*/
 
+.heade {
+    color: black;
+    font-size: 27px;
+    font-weight: bold;
+    padding: 10px;
+}
+
 .navigation {
     padding: 0px !important;
+}
+
+i {
+    color: black;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 .navigation .navbar {
