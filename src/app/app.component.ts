@@ -51,6 +51,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.identity = this._userService.getIdentity();
+    console.log('hola', this.identity);
   }
 
   ngDoCheck() {
@@ -61,5 +62,11 @@ export class AppComponent implements OnInit, DoCheck {
     localStorage.clear();
     this.identity = null;
     this._router.navigate(['/']);
+  }
+
+  login() {
+    localStorage.clear();
+    this.identity = null;
+    this._router.navigate(['/request']);
   }
 }
