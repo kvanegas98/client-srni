@@ -11,6 +11,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RequestComponent } from './components/request/request.component';
 
+// Servicios
+import { UserService } from './services/user.service';
+import { RequestService } from './services/request.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +23,7 @@ import { RequestComponent } from './components/request/request.component';
     RequestComponent,
   ],
   imports: [BrowserModule, routing, FormsModule, HttpClientModule],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, UserService, RequestService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
