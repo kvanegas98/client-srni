@@ -55,7 +55,7 @@ export class RequestComponent implements OnInit {
     );
   }
 
-  onCancel(form) {
+  /*onCancel(form) {
     form.reset();
-  }
+  }*/
 }
