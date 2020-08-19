@@ -3,6 +3,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
+import { SocialUser } from 'angularx-social-login';
+import { SocialAuthService } from 'angularx-social-login';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
+
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -14,11 +21,14 @@ export class LoginComponent implements OnInit {
   public status: string;
   public identity;
   public token;
+  us: SocialUser;
+  loggedIn: boolean;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _userService: UserService
+    private _userService: UserService,
+    private authService: SocialAuthService
   ) {
     this.title = 'Identificate';
     this.user = new User('', '', '', '', '', '', '', '', '', '', '');
@@ -26,6 +36,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     console.log('Componente de login cargado...');
+    this.authService.authState.subscribe((us) => {
+      this.us = us;
+      this.loggedIn = us != null;
+      console.log(this.us);
+    });
   }
 
   onSubmit() {
@@ -34,6 +49,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         this.identity = response.usuario;
         console.log(response);
+        this._router.navigate(['/request']);
 
         console.log(this.identity);
 
@@ -64,10 +80,11 @@ export class LoginComponent implements OnInit {
       (response) => {
         this.token = response.token;
 
-        console.log(this.token);
+        // console.log(this.token);
 
-        if (this.token.length <= 0) {
+        if (this.token == null) {
           this.status = 'error';
+          console.log('Hola mundo');
         } else {
           // PERSISTIR TOKEN DEL USUARIO
           localStorage.setItem('token', this.token);
@@ -87,16 +104,16 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  /*getCounters() {
-    this._userService.getCounters().subscribe(
-      (response) => {
-        localStorage.setItem('stats', JSON.stringify(response));
-        this.status = 'success';
-        this._router.navigate(['/']);
-      },
-      (error) => {
-        console.log(<any>error);
-      }
-    );
-  } */
+  //Metodos redes sociales
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
+  }
 }

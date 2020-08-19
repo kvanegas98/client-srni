@@ -13,7 +13,19 @@ import { RequestComponent } from './components/request/request.component';
 
 // Servicios
 import { UserService } from './services/user.service';
+import { UserGuard } from './services/user.guard';
 import { RequestService } from './services/request.service';
+
+//Inicio de sesion con redes sociales
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  AmazonLoginProvider,
+} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -22,8 +34,41 @@ import { RequestService } from './services/request.service';
     RegisterComponent,
     RequestComponent,
   ],
-  imports: [BrowserModule, routing, FormsModule, HttpClientModule],
-  providers: [appRoutingProviders, UserService, RequestService],
+  imports: [
+    BrowserModule,
+    routing,
+    FormsModule,
+    HttpClientModule,
+    SocialLoginModule,
+  ],
+  providers: [
+    appRoutingProviders,
+    UserService,
+    UserGuard,
+    RequestService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '916092143878-kbgf7vg7hk1d3rojm7lprv7ocjsgvcke.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId'),
+          },
+          {
+            id: AmazonLoginProvider.PROVIDER_ID,
+            provider: new AmazonLoginProvider('clientId'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
