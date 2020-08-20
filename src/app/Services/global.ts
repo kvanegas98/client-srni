@@ -1,3 +1,5 @@
 export var GLOBAL = {
-  url: 'https://srni.herokuapp.com/',
+  url: 'http://localhost:3000/',
 };
+
+//https://srni.herokuapp.com/

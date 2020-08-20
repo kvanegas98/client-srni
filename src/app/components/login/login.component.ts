@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.authService.authState.subscribe((us) => {
       this.us = us;
       this.loggedIn = us != null;
-      console.log(this.us);
+      console.log('Holis', this.us);
     });
   }
 
