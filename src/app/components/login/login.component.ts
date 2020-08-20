@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   public status: string;
   public identity;
   public token;
+  public tokenGoogle;
   us: SocialUser;
   loggedIn: boolean;
 
@@ -38,8 +39,43 @@ export class LoginComponent implements OnInit {
     console.log('Componente de login cargado...');
     this.authService.authState.subscribe((us) => {
       this.us = us;
+      this.tokenGoogle = this.us.idToken;
+      console.log('Hola mundo' + this.tokenGoogle);
+
+      this._userService.signupGoogle(this.tokenGoogle).subscribe(
+        (response) => {
+          this.identity = response.usuario;
+          console.log('Mi pana' + this.tokenGoogle);
+
+          console.log(response);
+          // this._router.navigate(['/request']);
+
+          console.log(this.identity);
+
+          if (!this.identity || !this.identity._id) {
+            this.status = 'error';
+          } else {
+            // PERSISTIR DATOS DEL USUARIO
+            localStorage.setItem('identity', JSON.stringify(this.identity));
+            this.status = 'success';
+            this._router.navigate(['/request']);
+
+            // Conseguir el token
+            this.getToken();
+          }
+        },
+        (error) => {
+          var errorMessage = <any>error;
+          console.log(errorMessage);
+
+          if (errorMessage != null) {
+            this.status = 'error';
+          }
+        }
+      );
+
       this.loggedIn = us != null;
-      console.log(this.us);
+      // console.log(this.us);
     });
   }
 
