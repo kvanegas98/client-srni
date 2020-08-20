@@ -40,11 +40,30 @@ export class UserService {
       user.gettoken = tokenId;
     }*/
 
-    //let params = JSON.stringify(user);
-    //let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
-    // return this._http.post(this.url + 'login', params, { headers: headers });
-    return this._http.post(this.url + 'google', idtoken);
+    var urlencoded = new URLSearchParams();
+    urlencoded.append('idtoken', idtoken);
+
+    var requestOptions: any = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    };
+    const data$ = Observable.create((observer) => {
+      fetch('http://localhost:3000/google', requestOptions)
+        .then((response) => response.json()) // or text() or blob() etc.
+        .then((data) => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch((err) => observer.error(err));
+    });
+    return data$;
+    //return this._http.post(this.url + 'google', '', requestOptions);
+    //return fetch('http://localhost:3000/google', requestOptions);
   }
 
   getIdentity() {
