@@ -18,8 +18,8 @@ export class RequestService {
       .set('Content-Type', 'application/json')
       .set('x-access-token', token);
     //.set('Authorization', token);
-
-    return this._http.post(this.url + 'solicitud', params, {
+    console.log(request);
+    return this._http.post(this.url + 'solicitud', request, {
       headers: headers,
     });
   }
