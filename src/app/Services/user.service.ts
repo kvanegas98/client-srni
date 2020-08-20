@@ -27,7 +27,7 @@ export class UserService {
     if (gettoken != null) {
       user.gettoken = gettoken;
     }
-
+    console.log(user);
     let params = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
@@ -42,7 +42,7 @@ export class UserService {
 
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
-
+    // myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:8081');
     var urlencoded = new URLSearchParams();
     urlencoded.append('idtoken', idtoken);
 
@@ -53,7 +53,7 @@ export class UserService {
       redirect: 'follow',
     };
     const data$ = Observable.create((observer) => {
-      fetch('http://localhost:3000/google', requestOptions)
+      fetch('https://srni.herokuapp.com/google', requestOptions)
         .then((response) => response.json()) // or text() or blob() etc.
         .then((data) => {
           observer.next(data);
@@ -62,8 +62,6 @@ export class UserService {
         .catch((err) => observer.error(err));
     });
     return data$;
-    //return this._http.post(this.url + 'google', '', requestOptions);
-    //return fetch('http://localhost:3000/google', requestOptions);
   }
 
   getIdentity() {

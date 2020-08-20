@@ -37,8 +37,6 @@ export class RequestComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(this.request);
-    // console.log('sos feka' + this.token);
     this._requestService.addRequest(this.token, this.request).subscribe(
       (response) => {
         //if (response.user && response.user._id) {
