@@ -390,8 +390,21 @@ ul:hover {
 
 /*Cabecera*/
 
+.heade {
+    color: black;
+    font-size: 27px;
+    font-weight: bold;
+    padding: 10px;
+}
+
 .navigation {
     padding: 0px !important;
+}
+
+i {
+    color: black;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 .navigation .navbar {
@@ -406,4 +419,41 @@ ul:hover {
 
 .navigation .navbar a:hover {
     background: #652130 !important;
+}
+
+.navigation .navbar .dropdown-menu * {
+    color: black !important;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus {
+    background: #540c17 !important;
+}
+
+.navigation .navbar .dropdown-menu a:hover {
+    background: #eee !important;
+}
+
+.navigation .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 9px;
+    margin-right: 2px;
+}
+
+.navigation .avatar img {
+    height: auto;
+    width: 38px;
+}
+
+.jumbotron {
+    padding: 25px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.user-image-for-edit img {
+    height: 60px;
 }

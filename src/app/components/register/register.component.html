@@ -43,13 +43,19 @@
     <div class="col-lg-10">
       <h1 class="h1-strong text-center">{{ title }}</h1>
 
+<<<<<<< HEAD
       <!--  <div class="alert alert-success" *ngIf="status == 'success'">
+=======
+
+            <div class="alert alert-success" *ngIf="status == 'success'">
+>>>>>>> 2409dc7b3bb4e18880a4a8d5356bf468a4680cc4
                 Registro completado correctamente, <a [routerLink]="['/login']">identificate aquí</a>
             </div>
 
             <div class="alert alert-danger" *ngIf="status == 'error'">
-                El registro no ha podido completarse, quizas tu email o nickname ya esté en uso, intentalo de nuevo con otros datos
+                El registro no ha podido completarse, quizas tu email ya esté en uso, intentalo de nuevo con otros datos
             </div>
+<<<<<<< HEAD
  -->
       <form
         #registerForm="ngForm"
@@ -70,6 +76,102 @@
             El primer nombre es obligatorio!!
           </span>
         </p>
+=======
+
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="mr4 absolute-center ">
+                <p>
+                    <label> Nombre</label>
+                    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" class="form-control" required />
+                    <span *ngIf="!nombre.valid && nombre.touched">
+				El primer nombre es obligatorio!!
+			</span>
+                </p>
+
+                <p>
+                    <label>Primer Apellido</label>
+                    <input type="text" name="primerApellido" #primerApellido="ngModel" [(ngModel)]="user.Papellido" class="form-control" required />
+                    <span *ngIf="!primerApellido.valid && primerApellido.touched">
+				El primer Apellido es obligatorio!!
+			</span>
+                </p>
+
+                <p>
+                    <label>Segundo Apellido</label>
+                    <input type="text" name="segundoApellido" #segundoApellido="ngModel" [(ngModel)]="user.Sapellido" class="form-control" required />
+                    <span *ngIf="!segundoApellido.valid && segundoApellido.touched">
+				El segundo Apellido es obligatorio!!
+			</span>
+                </p>
+
+                <p>
+                    <label>Dirección 1</label>
+                    <input type="text" name="direccion1" #direccion1="ngModel" [(ngModel)]="user.direccion1" class="form-control" required />
+                    <span *ngIf="!direccion1.valid && direccion1.touched">
+				La primera dirección es obligatorio!!
+			</span>
+                </p>
+
+                <p>
+                    <label>Dirección 2</label>
+                    <input type="text" name="direccion2" #direccion2="ngModel" [(ngModel)]="user.direccion2" class="form-control" required />
+                    <span *ngIf="!direccion1.valid && direccion1.touched">
+				La dirección 2 es obligatoria!!
+			</span>
+                </p>
+
+                <p>
+                    <label>Correo electrónico</label>
+                    <input type="email " name="email " #email="ngModel" [(ngModel)]="user.email" class="form-control " required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
+                    <span *ngIf="!email.valid && email.touched">
+				El correo no es correcto!!
+			</span>
+                </p>
+
+
+                <p>
+                    <label>Contraseña</label>
+                    <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required />
+                    <span *ngIf="!password.valid && password.touched">
+				La constraseña es obligatoria!!
+			</span>
+                </p>
+
+                <p>
+                    <label>Telefono</label>
+                    <input type="text" name="tel" #tel="ngModel" [(ngModel)]="user.telefono" class="form-control" required pattern="^[2]\d{7}$" />
+                    <span *ngIf="!tel.valid && tel.touched">
+				El numero de telefono es incorrecto
+			</span>
+                </p>
+                <p>
+                    <label>Móvil</label>
+                    <input type="text" name="mov" #mov="ngModel" [(ngModel)]="user.movil" class="form-control" required pattern="^[5|7|8]\d{7}$" />
+                    <span *ngIf="!mov.valid && mov.touched">
+				El numero de telefono es incorrecto
+			</span>
+                </p>
+
+
+
+                <p>
+                    <label>Cédula</label>
+                    <input type="text" name="ced" #ced="ngModel" [(ngModel)]="user.cedula " class="form-control" required pattern="">
+                    <span *ngIf="!ced.valid && ced.touched">
+				La cédula es incorrecta
+			</span>
+                </p>
+
+                <p>
+                    <label>Intereses</label>
+                    <input type="text-a" name="ced" #int="ngModel" [(ngModel)]="user.intereses " class="form-control" required pattern="">
+                    <span *ngIf="!int.valid && int.touched">
+				Campo vacio
+			</span>
+                </p>
+
+                <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!registerForm.form.valid" />
+            </form>
+>>>>>>> 2409dc7b3bb4e18880a4a8d5356bf468a4680cc4
 
         <p>
           <label>Primer Apellido</label>
