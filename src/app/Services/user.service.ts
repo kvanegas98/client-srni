@@ -42,8 +42,11 @@ export class UserService {
 
     //let params = JSON.stringify(user);
     //let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    /*let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', idtoken);*/
 
-    // return this._http.post(this.url + 'login', params, { headers: headers });
+    //return this._http.post(this.url + 'google', { headers: headers });
     return this._http.post(this.url + 'google', idtoken);
   }
 
@@ -61,7 +64,7 @@ export class UserService {
 
   getToken() {
     let token = localStorage.getItem('token');
-    console.log(this.token);
+    console.log('Token' + this.token);
 
     if (token != 'undefined') {
       this.token = token;
