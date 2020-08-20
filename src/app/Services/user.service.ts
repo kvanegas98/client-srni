@@ -16,14 +16,10 @@ export class UserService {
   }
 
   register(user: User): Observable<any> {
-    let json = JSON.stringify(user);
-    let params = 'json=' + json;
-    let headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
+    let params = JSON.stringify(user);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this._http.post(this.url + 'usuario', user);
+    return this._http.post(this.url + 'usuario', params, { headers: headers });
   }
 
   /*signup(user, gettoken = null): Observable<any> {
