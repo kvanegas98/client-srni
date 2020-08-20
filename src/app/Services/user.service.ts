@@ -35,6 +35,18 @@ export class UserService {
     return this._http.post(this.url + 'login', user);
   }
 
+  signupGoogle(idtoken): Observable<any> {
+    /* if (tokenId != null) {
+      user.gettoken = tokenId;
+    }*/
+
+    //let params = JSON.stringify(user);
+    //let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    // return this._http.post(this.url + 'login', params, { headers: headers });
+    return this._http.post(this.url + 'google', idtoken);
+  }
+
   getIdentity() {
     let identity = JSON.parse(localStorage.getItem('identity'));
 

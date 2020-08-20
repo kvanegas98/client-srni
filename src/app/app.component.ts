@@ -64,6 +64,10 @@ export class AppComponent implements OnInit, DoCheck {
     this.authService.authState.subscribe((us) => {
       this.us = us;
       this.loggedIn = us != null;
+      /*if (this.us) {
+        this._router.navigate(['/request']);
+        console.log('Fresco el pana');
+      }*/
       console.log(this.us);
     });
     //console.log(this.us);
@@ -75,7 +79,8 @@ export class AppComponent implements OnInit, DoCheck {
     this.authService.authState.subscribe((us) => {
       this.us = us;
       this.loggedIn = us != null;
-      console.log(this.us);
+
+      // console.log(this.us);
     });
   }
 
