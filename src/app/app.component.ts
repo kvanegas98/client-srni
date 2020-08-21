@@ -88,6 +88,7 @@ export class AppComponent implements OnInit, DoCheck {
     localStorage.clear();
     this.identity = null;
     this.authService.signOut();
+
     this._router.navigate(['/']);
   }
 
