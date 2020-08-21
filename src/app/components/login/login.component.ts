@@ -80,7 +80,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.user);
     this._userService.signup(this.user).subscribe(
       (response) => {
         this.identity = response.usuario;
@@ -114,6 +113,7 @@ export class LoginComponent implements OnInit {
   getToken() {
     this._userService.signup(this.user, 'true').subscribe(
       (response) => {
+        console.log(response);
         this.token = response.token;
 
         // console.log(this.token);

@@ -127,6 +127,10 @@
   },
   "defaultProject": "srni-proyecto",
   "cli": {
+<<<<<<< HEAD
     "analytics": "dabf1c9c-02dd-42e7-a922-f9a97d217fcb"
+=======
+    "analytics": "f9a77232-47e5-4929-a677-4325600983a8"
+>>>>>>> 28a05bb64011b9cfce70c5f31aa26acf5277d97c
   }
 }
