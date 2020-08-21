@@ -29,7 +29,9 @@ export class RequestComponent implements OnInit {
     this.title = 'Solicitudes';
     this.request = new Request('', '', '', '', '', '', '');
     this.identity = this._userService.getIdentity();
+    console.log(this.identity);
     this.token = this._userService.getToken();
+    console.log(this.token);
   }
 
   ngOnInit() {

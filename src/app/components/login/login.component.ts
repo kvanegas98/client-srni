@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     console.log('Componente de login cargado...');
+
     this.authService.authState.subscribe((us) => {
       this.us = us;
       this.tokenGoogle = this.us.idToken;
@@ -44,8 +45,9 @@ export class LoginComponent implements OnInit {
 
       this._userService.signupGoogle(this.tokenGoogle).subscribe(
         (response) => {
+          console.log(response);
+
           this.identity = response.usuario;
-          console.log('Mi pana' + this.tokenGoogle);
 
           console.log(response);
           // this._router.navigate(['/request']);
@@ -57,11 +59,12 @@ export class LoginComponent implements OnInit {
           } else {
             // PERSISTIR DATOS DEL USUARIO
             localStorage.setItem('identity', JSON.stringify(this.identity));
+            localStorage.setItem('token', response.token);
+            //this.getToken();
             this.status = 'success';
             this._router.navigate(['/request']);
 
             // Conseguir el token
-            this.getToken();
           }
         },
         (error) => {
@@ -84,7 +87,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         this.identity = response.usuario;
         console.log(response);
-        this._router.navigate(['/request']);
+        // this._router.navigate(['/request']);
 
         console.log(this.identity);
 
@@ -93,11 +96,12 @@ export class LoginComponent implements OnInit {
         } else {
           // PERSISTIR DATOS DEL USUARIO
           localStorage.setItem('identity', JSON.stringify(this.identity));
+          localStorage.setItem('token', response.token);
+          // Conseguir el token
+
+          //  this.getToken();
           this.status = 'success';
           this._router.navigate(['/request']);
-
-          // Conseguir el token
-          this.getToken();
         }
       },
       (error) => {
@@ -124,7 +128,7 @@ export class LoginComponent implements OnInit {
         } else {
           // PERSISTIR TOKEN DEL USUARIO
           localStorage.setItem('token', this.token);
-
+          console.log(localStorage.getItem('token'));
           // Conseguir los contadores o estadisticas del usuario
           // this.getCounters();
         }
