@@ -16,7 +16,7 @@
 
             </ul>
 
-            <ul class="nav navbar navbar-nav navbar-right" *ngIf="!identity && !us">
+            <ul class="nav navbar navbar-nav navbar-right" *ngIf="!identity">
                 <li>
                     <a [routerLink]="['/login']" [routerLinkActive]="['active']">
                         <span class="glyphicon glyphicon-log-in"></span> Login
@@ -34,6 +34,7 @@
                 <li class="avatar">
                     <!--cargar imagen de usuario-->
                     <img src="{{ url + 'get-image-user/' + identity.image }}" *ngIf="identity && identity.image" />
+
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -53,15 +54,16 @@
                             <a class="pointer" (click)="logout()">
                                 <span class="glyphicon glyphicon-log-out"></span> Cerrar sesión
                             </a>
+
                         </li>
                     </ul>
                 </li>
             </ul>
 
-
+            <!-- 
             <ul class="nav navbar-nav navbar-right" *ngIf="us">
                 <li class="avatar">
-                    <!--cargar imagen de usuario-->
+                
                     <img src="{{us.photoUrl }}" />
                 </li>
                 <li class="dropdown">
@@ -85,7 +87,7 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </nav>
 

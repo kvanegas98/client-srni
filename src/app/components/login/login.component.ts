@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   public status: string;
   public identity;
   public token;
-  public tokenGoogle;
+  public cerrar;
+  public idtoken;
   us: SocialUser;
   loggedIn: boolean;
 
@@ -40,29 +41,35 @@ export class LoginComponent implements OnInit {
 
     this.authService.authState.subscribe((us) => {
       this.us = us;
-      this.tokenGoogle = this.us.idToken;
-      console.log('Hola mundo' + this.tokenGoogle);
+      this.idtoken = this.us.idToken;
+      console.log('Hola mundo' + this.idtoken);
 
-      this._userService.signupGoogle(this.tokenGoogle).subscribe(
+      this._userService.signupGoogle(this.idtoken).subscribe(
         (response) => {
           console.log(response);
 
           this.identity = response.usuario;
+          //console.log('Ojo' + response);
+
+          // console.log('Mi pana' + this.idtoken);
 
           console.log(response);
           // this._router.navigate(['/request']);
 
-          console.log(this.identity);
-
+          // this.cerrar = response.usuario.google;
+          //console.log('CERRANDO ' + this.cerrar);
           if (!this.identity || !this.identity._id) {
             this.status = 'error';
+            console.log(this.status);
           } else {
             // PERSISTIR DATOS DEL USUARIO
             localStorage.setItem('identity', JSON.stringify(this.identity));
             localStorage.setItem('token', response.token);
+            //localStorage.setItem('token', this.idtoken);
             //this.getToken();
             this.status = 'success';
             this._router.navigate(['/request']);
+            console.log(this.status);
 
             // Conseguir el token
           }
@@ -89,7 +96,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
         // this._router.navigate(['/request']);
 
-        console.log(this.identity);
+        // console.log('OKKKKKKKKKK' + this.identity);
 
         if (!this.identity || !this.identity._id) {
           this.status = 'error';
@@ -122,7 +129,7 @@ export class LoginComponent implements OnInit {
 
         // console.log(this.token);
 
-        if (this.token == null) {
+        if (this.token.lenght <= 0) {
           this.status = 'error';
           console.log('Hola mundo');
         } else {
