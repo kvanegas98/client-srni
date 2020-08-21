@@ -157,7 +157,7 @@ export class LoginComponent implements OnInit {
     console.log(this.user);
     this._userService.signup(this.user).subscribe(
       (response) => {
-       console.log()
+        console.log();
       },
       (error) => {
         var errorMessage = <any>error;
