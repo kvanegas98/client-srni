@@ -64,6 +64,7 @@ export class AppComponent implements OnInit, DoCheck {
     this.authService.authState.subscribe((us) => {
       this.us = us;
       this.loggedIn = us != null;
+
       /*if (this.us) {
         this._router.navigate(['/request']);
         console.log('Fresco el pana');
@@ -71,7 +72,6 @@ export class AppComponent implements OnInit, DoCheck {
       console.log(this.us);
     });
     //console.log(this.us);
-    console.log('Mi pana', this.identity);
   }
 
   ngDoCheck() {
@@ -87,6 +87,8 @@ export class AppComponent implements OnInit, DoCheck {
   logout() {
     localStorage.clear();
     this.identity = null;
+    // this.authService.signOut();
+    //this.authService = null;
     this._router.navigate(['/']);
   }
 
@@ -95,8 +97,4 @@ export class AppComponent implements OnInit, DoCheck {
     //this.identity = null;
     this._router.navigate(['/request']);
   }*/
-
-  signOut(): void {
-    this.authService.signOut();
-  }
 }

@@ -13,14 +13,45 @@ export class RequestService {
   }
 
   addRequest(token, request): Observable<any> {
-    let params = JSON.stringify(request);
+    /*  let params = JSON.stringify(request);
     let headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('x-access-token', token);
+    // .set('Access-Control-Allow-Headers', token);
     //.set('Authorization', token);
     console.log(request);
     return this._http.post(this.url + 'solicitud', request, {
       headers: headers,
+    });*/
+
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+    myHeaders.append('x-access-token', token);
+    //myHeaders.append('Authorization', token);
+    // myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:8081');
+    var urlencoded = new URLSearchParams();
+    urlencoded.append('tipoSolicitud', request.tipoSolicitud);
+    urlencoded.append('asunto', request.asunto);
+    urlencoded.append('detalle', request.detalle);
+    urlencoded.append('info', request.info);
+    urlencoded.append('ubicacion', request.ubicacion);
+    urlencoded.append('prioridad', request.prioridad);
+
+    var requestOptions: any = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    };
+    const data$ = Observable.create((observer) => {
+      fetch('https://srni.herokuapp.com/solicitud', requestOptions)
+        .then((response) => response.json()) // or text() or blob() etc.
+        .then((data) => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch((err) => observer.error(err));
     });
+    return data$;
   }
 }

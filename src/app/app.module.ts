@@ -59,7 +59,7 @@ import {
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId'),
+            provider: new FacebookLoginProvider('301893964236415'),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,
