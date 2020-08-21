@@ -53,7 +53,7 @@ export class UserService {
       redirect: 'follow',
     };
     const data$ = Observable.create((observer) => {
-      fetch('https://srni.herokuapp.com/google', requestOptions)
+      fetch('http://localhost:3000/google', requestOptions)
         .then((response) => response.json()) // or text() or blob() etc.
         .then((data) => {
           observer.next(data);
