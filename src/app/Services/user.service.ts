@@ -90,15 +90,20 @@ export class UserService {
 
   getToken() {
     let token = localStorage.getItem('token');
+<<<<<<< HEAD
     console.log('Token' + this.token);
+=======
+    console.log(localStorage.getItem('token'));
+    console.log(token);
+>>>>>>> d34495430f5e0bc51e4037321c3b10cfd62a9019
 
     if (token != 'undefined') {
-      this.token = token;
+      token = token;
     } else {
-      this.token = null;
+      token = null;
     }
 
-    return this.token;
+    return token;
   }
 
   /* getStats() {

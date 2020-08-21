@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   }
 }*/
 
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, ɵConsole } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from './services/user.service';
 import { GLOBAL } from './services/global';
@@ -87,8 +87,12 @@ export class AppComponent implements OnInit, DoCheck {
   logout() {
     localStorage.clear();
     this.identity = null;
+<<<<<<< HEAD
     // this.authService.signOut();
     //this.authService = null;
+=======
+
+>>>>>>> d34495430f5e0bc51e4037321c3b10cfd62a9019
     this._router.navigate(['/']);
   }
 
@@ -97,4 +101,12 @@ export class AppComponent implements OnInit, DoCheck {
     //this.identity = null;
     this._router.navigate(['/request']);
   }*/
+<<<<<<< HEAD
+=======
+
+  signOut(): void {
+    this.authService.signOut();
+    localStorage.clear();
+  }
+>>>>>>> d34495430f5e0bc51e4037321c3b10cfd62a9019
 }

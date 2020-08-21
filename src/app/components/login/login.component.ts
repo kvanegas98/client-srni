@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     console.log('Componente de login cargado...');
+
     this.authService.authState.subscribe((us) => {
       this.us = us;
       this.idtoken = this.us.idToken;
@@ -45,10 +46,15 @@ export class LoginComponent implements OnInit {
 
       this._userService.signupGoogle(this.idtoken).subscribe(
         (response) => {
+          console.log(response);
+
           this.identity = response.usuario;
+<<<<<<< HEAD
           //console.log('Ojo' + response);
 
           // console.log('Mi pana' + this.idtoken);
+=======
+>>>>>>> d34495430f5e0bc51e4037321c3b10cfd62a9019
 
           console.log(response);
           // this._router.navigate(['/request']);
@@ -61,12 +67,13 @@ export class LoginComponent implements OnInit {
           } else {
             // PERSISTIR DATOS DEL USUARIO
             localStorage.setItem('identity', JSON.stringify(this.identity));
+            localStorage.setItem('token', response.token);
+            //this.getToken();
             this.status = 'success';
             this._router.navigate(['/request']);
             console.log(this.status);
 
             // Conseguir el token
-            this.getToken();
           }
         },
         (error) => {
@@ -89,7 +96,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         this.identity = response.usuario;
         console.log(response);
-        this._router.navigate(['/request']);
+        // this._router.navigate(['/request']);
 
         // console.log('OKKKKKKKKKK' + this.identity);
 
@@ -98,11 +105,12 @@ export class LoginComponent implements OnInit {
         } else {
           // PERSISTIR DATOS DEL USUARIO
           localStorage.setItem('identity', JSON.stringify(this.identity));
+          localStorage.setItem('token', response.token);
+          // Conseguir el token
+
+          //  this.getToken();
           this.status = 'success';
           this._router.navigate(['/request']);
-
-          // Conseguir el token
-          this.getToken();
         }
       },
       (error) => {
@@ -129,7 +137,7 @@ export class LoginComponent implements OnInit {
         } else {
           // PERSISTIR TOKEN DEL USUARIO
           localStorage.setItem('token', this.token);
-
+          console.log(localStorage.getItem('token'));
           // Conseguir los contadores o estadisticas del usuario
           // this.getCounters();
         }
