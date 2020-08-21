@@ -49,12 +49,9 @@ export class LoginComponent implements OnInit {
           console.log(response);
 
           this.identity = response.usuario;
-<<<<<<< HEAD
           //console.log('Ojo' + response);
 
           // console.log('Mi pana' + this.idtoken);
-=======
->>>>>>> d34495430f5e0bc51e4037321c3b10cfd62a9019
 
           console.log(response);
           // this._router.navigate(['/request']);
@@ -68,6 +65,7 @@ export class LoginComponent implements OnInit {
             // PERSISTIR DATOS DEL USUARIO
             localStorage.setItem('identity', JSON.stringify(this.identity));
             localStorage.setItem('token', response.token);
+            //localStorage.setItem('token', this.idtoken);
             //this.getToken();
             this.status = 'success';
             this._router.navigate(['/request']);
