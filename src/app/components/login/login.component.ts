@@ -210,8 +210,12 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  signInWithFB(): void {
+  /*signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }*/
+
+  goFB() {
+    this._router.navigate(['/facebook']);
   }
 
   signOut(): void {

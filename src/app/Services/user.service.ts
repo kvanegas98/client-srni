@@ -76,6 +76,30 @@ export class UserService {
     //>>>>>>> 4fb100a52859e90a896992f0846c267596b1b8f8
   }
 
+  signupFB(idtoken, user: User): Observable<any> {
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+    var urlencoded = new URLSearchParams();
+    urlencoded.append('idtoken', idtoken);
+
+    var requestOptions: any = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    };
+    const data$ = Observable.create((observer) => {
+      fetch('https://srni.herokuapp.com/facebook', requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch((err) => observer.error(err));
+    });
+    return data$;
+  }
+
   getIdentity() {
     let identity = JSON.parse(localStorage.getItem('identity'));
 
