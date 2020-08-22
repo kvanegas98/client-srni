@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
       this.idtoken = this.us.idToken;
       console.log('Hola mundo' + this.idtoken);
 
+      //Servicio con google
       this._userService.signupGoogle(this.idtoken).subscribe(
         (response) => {
           console.log(response);
