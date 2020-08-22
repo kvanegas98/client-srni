@@ -80,7 +80,20 @@ export class UserService {
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     var urlencoded = new URLSearchParams();
+    //ENviando token
     urlencoded.append('idtoken', idtoken);
+    //Enviando objeto Usuario
+    urlencoded.append('nombre', user.nombre);
+    urlencoded.append('email', user.email);
+    urlencoded.append('password', user.password);
+    urlencoded.append('Papellido', user.Papellido);
+    urlencoded.append('direccion1', user.direccion1);
+    urlencoded.append('direccion2', user.direccion2);
+    urlencoded.append('Sapellido', user.Sapellido);
+    urlencoded.append('movil', user.movil);
+    urlencoded.append('telefono', user.telefono);
+    urlencoded.append('cedula', user.cedula);
+    urlencoded.append('intereses', user.intereses);
 
     var requestOptions: any = {
       method: 'POST',

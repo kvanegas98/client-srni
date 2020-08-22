@@ -30,7 +30,10 @@ export class FacebookComponent implements OnInit {
     private _router: Router,
     private _userService: UserService,
     private authService: SocialAuthService
-  ) {}
+  ) {
+    this.title = 'Identificate con facebook';
+    this.user = new User('', '', '', '', '', '', '', '', '', '', '');
+  }
 
   ngOnInit(): void {
     console.log('Componente de Facebook cargado...');
