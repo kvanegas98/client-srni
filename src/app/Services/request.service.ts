@@ -13,18 +13,6 @@ export class RequestService {
   }
 
   addRequest(token, request): Observable<any> {
-    /*
-    let params = JSON.stringify(request);
-    let headers = new HttpHeaders()
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('x-access-token', token);
-    // .set('Access-Control-Allow-Headers', token);
-    //.set('Authorization', token);
-    console.log(request);
-    return this._http.post(this.url + 'solicitud', request, {
-      headers: headers,
-    });*/
-
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     myHeaders.append('x-access-token', token);
