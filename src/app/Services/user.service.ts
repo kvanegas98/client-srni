@@ -32,7 +32,7 @@ export class UserService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     // return this._http.post(this.url + 'login', params, { headers: headers });
-    return this._http.post(this.url + 'login', user);
+    return this._http.post(this.url + 'login', user, { headers: headers });
   }
 
   signupGoogle(idtoken): Observable<any> {
@@ -57,12 +57,13 @@ export class UserService {
 
     var requestOptions: any = {
       method: 'POST',
+
       headers: myHeaders,
       body: urlencoded,
       redirect: 'follow',
     };
     const data$ = Observable.create((observer) => {
-      fetch('https://srni.herokuapp.com/google', requestOptions)
+      fetch(this.url + 'google', requestOptions)
         .then((response) => response.json()) // or text() or blob() etc.
         .then((data) => {
           observer.next(data);
@@ -82,18 +83,6 @@ export class UserService {
     var urlencoded = new URLSearchParams();
     //ENviando token
     urlencoded.append('idtoken', idtoken);
-    //Enviando objeto Usuario
-    urlencoded.append('nombre', user.nombre);
-    urlencoded.append('email', user.email);
-    urlencoded.append('password', user.password);
-    urlencoded.append('Papellido', user.Papellido);
-    urlencoded.append('direccion1', user.direccion1);
-    urlencoded.append('direccion2', user.direccion2);
-    urlencoded.append('Sapellido', user.Sapellido);
-    urlencoded.append('movil', user.movil);
-    urlencoded.append('telefono', user.telefono);
-    urlencoded.append('cedula', user.cedula);
-    urlencoded.append('intereses', user.intereses);
 
     var requestOptions: any = {
       method: 'POST',
@@ -102,7 +91,7 @@ export class UserService {
       redirect: 'follow',
     };
     const data$ = Observable.create((observer) => {
-      fetch('https://srni.herokuapp.com/facebook', requestOptions)
+      fetch(this.url + 'facebook', requestOptions)
         .then((response) => response.json())
         .then((data) => {
           observer.next(data);
