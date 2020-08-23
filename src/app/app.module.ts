@@ -26,6 +26,7 @@ import {
   FacebookLoginProvider,
   AmazonLoginProvider,
 } from 'angularx-social-login';
+import { FacebookComponent } from './components/facebook/facebook.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {
     LoginComponent,
     RegisterComponent,
     RequestComponent,
+    FacebookComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import {
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId'),
+            provider: new FacebookLoginProvider('301893964236415'),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,

@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   public status: string;
   public identity;
   public token;
-  public tokenGoogle;
+  public cerrar;
+  public idtoken;
   us: SocialUser;
   loggedIn: boolean;
 
@@ -35,33 +36,96 @@ export class LoginComponent implements OnInit {
     this.user = new User('', '', '', '', '', '', '', '', '', '', '');
   }
 
-  ngOnInit() {
-    console.log('Componente de login cargado...');
+  ngDoCheck() {
     this.authService.authState.subscribe((us) => {
       this.us = us;
-      this.tokenGoogle = this.us.idToken;
-      console.log('Hola mundo' + this.tokenGoogle);
+      console.log(this.us);
+      this.idtoken = this.us.idToken;
+      console.log('Hola mundo' + this.idtoken);
 
-      this._userService.signupGoogle(this.tokenGoogle).subscribe(
+      this._userService.signupGoogle(this.idtoken).subscribe(
         (response) => {
+          console.log(response);
+
           this.identity = response.usuario;
-          console.log('Mi pana' + this.tokenGoogle);
+          //console.log('Ojo' + response);
+
+          // console.log('Mi pana' + this.idtoken);
 
           console.log(response);
           // this._router.navigate(['/request']);
 
-          console.log(this.identity);
-
+          // this.cerrar = response.usuario.google;
+          //console.log('CERRANDO ' + this.cerrar);
           if (!this.identity || !this.identity._id) {
             this.status = 'error';
+            console.log(this.status);
           } else {
             // PERSISTIR DATOS DEL USUARIO
             localStorage.setItem('identity', JSON.stringify(this.identity));
+            localStorage.setItem('token', response.token);
+            //localStorage.setItem('token', this.idtoken);
+            //this.getToken();
             this.status = 'success';
             this._router.navigate(['/request']);
+            console.log(this.status);
 
             // Conseguir el token
-            this.getToken();
+          }
+        },
+        (error) => {
+          var errorMessage = <any>error;
+          console.log(errorMessage);
+
+          if (errorMessage != null) {
+            this.status = 'error';
+          }
+        }
+      );
+
+      this.loggedIn = us != null;
+      // console.log(this.us);
+    });
+  }
+
+  ngOnInit() {
+    console.log('Componente de login cargado...');
+
+    this.authService.authState.subscribe((us) => {
+      this.us = us;
+      console.log(this.us);
+      this.idtoken = this.us.idToken;
+      console.log('Hola mundo' + this.idtoken);
+
+      //Servicio con google
+      this._userService.signupGoogle(this.idtoken).subscribe(
+        (response) => {
+          console.log(response);
+
+          this.identity = response.usuario;
+          //console.log('Ojo' + response);
+
+          // console.log('Mi pana' + this.idtoken);
+
+          console.log(response);
+          // this._router.navigate(['/request']);
+
+          // this.cerrar = response.usuario.google;
+          //console.log('CERRANDO ' + this.cerrar);
+          if (!this.identity || !this.identity._id) {
+            this.status = 'error';
+            console.log(this.status);
+          } else {
+            // PERSISTIR DATOS DEL USUARIO
+            localStorage.setItem('identity', JSON.stringify(this.identity));
+            localStorage.setItem('token', response.token);
+            //localStorage.setItem('token', this.idtoken);
+            //this.getToken();
+            this.status = 'success';
+            this._router.navigate(['/request']);
+            console.log(this.status);
+
+            // Conseguir el token
           }
         },
         (error) => {
@@ -84,20 +148,21 @@ export class LoginComponent implements OnInit {
       (response) => {
         this.identity = response.usuario;
         console.log(response);
-        this._router.navigate(['/request']);
+        // this._router.navigate(['/request']);
 
-        console.log(this.identity);
+        // console.log('OKKKKKKKKKK' + this.identity);
 
         if (!this.identity || !this.identity._id) {
           this.status = 'error';
         } else {
           // PERSISTIR DATOS DEL USUARIO
           localStorage.setItem('identity', JSON.stringify(this.identity));
+          localStorage.setItem('token', response.token);
+          // Conseguir el token
+
+          //  this.getToken();
           this.status = 'success';
           this._router.navigate(['/request']);
-
-          // Conseguir el token
-          this.getToken();
         }
       },
       (error) => {
@@ -118,13 +183,13 @@ export class LoginComponent implements OnInit {
 
         // console.log(this.token);
 
-        if (this.token == null) {
+        if (this.token.lenght <= 0) {
           this.status = 'error';
           console.log('Hola mundo');
         } else {
           // PERSISTIR TOKEN DEL USUARIO
           localStorage.setItem('token', this.token);
-
+          console.log(localStorage.getItem('token'));
           // Conseguir los contadores o estadisticas del usuario
           // this.getCounters();
         }
@@ -145,8 +210,12 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  signInWithFB(): void {
+  /*signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }*/
+
+  goFB() {
+    this._router.navigate(['/facebook']);
   }
 
   signOut(): void {

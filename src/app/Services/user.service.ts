@@ -40,6 +40,15 @@ export class UserService {
       user.gettoken = tokenId;
     }*/
 
+    //
+    //let params = JSON.stringify(user);
+    //let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    /*let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', idtoken);*/
+
+    //return this._http.post(this.url + 'google', { headers: headers });
+    //  return this._http.post(this.url + 'google', idtoken);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     // myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:8081');
@@ -55,6 +64,46 @@ export class UserService {
     const data$ = Observable.create((observer) => {
       fetch('https://srni.herokuapp.com/google', requestOptions)
         .then((response) => response.json()) // or text() or blob() etc.
+        .then((data) => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch((err) => observer.error(err));
+    });
+    return data$;
+    //return this._http.post(this.url + 'google', '', requestOptions);
+    //return fetch('http://localhost:3000/google', requestOptions);
+    //>>>>>>> 4fb100a52859e90a896992f0846c267596b1b8f8
+  }
+
+  signupFB(idtoken, user: User): Observable<any> {
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+    var urlencoded = new URLSearchParams();
+    //ENviando token
+    urlencoded.append('idtoken', idtoken);
+    //Enviando objeto Usuario
+    urlencoded.append('nombre', user.nombre);
+    urlencoded.append('email', user.email);
+    urlencoded.append('password', user.password);
+    urlencoded.append('Papellido', user.Papellido);
+    urlencoded.append('direccion1', user.direccion1);
+    urlencoded.append('direccion2', user.direccion2);
+    urlencoded.append('Sapellido', user.Sapellido);
+    urlencoded.append('movil', user.movil);
+    urlencoded.append('telefono', user.telefono);
+    urlencoded.append('cedula', user.cedula);
+    urlencoded.append('intereses', user.intereses);
+
+    var requestOptions: any = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    };
+    const data$ = Observable.create((observer) => {
+      fetch('https://srni.herokuapp.com/facebook', requestOptions)
+        .then((response) => response.json())
         .then((data) => {
           observer.next(data);
           observer.complete();
@@ -78,15 +127,16 @@ export class UserService {
 
   getToken() {
     let token = localStorage.getItem('token');
-    console.log(this.token);
+    console.log(localStorage.getItem('token'));
+    console.log(token);
 
     if (token != 'undefined') {
-      this.token = token;
+      token = token;
     } else {
-      this.token = null;
+      token = null;
     }
 
-    return this.token;
+    return token;
   }
 
   /* getStats() {

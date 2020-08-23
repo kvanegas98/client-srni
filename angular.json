@@ -19,10 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -87,13 +84,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         },
@@ -105,9 +97,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -127,10 +117,6 @@
   },
   "defaultProject": "srni-proyecto",
   "cli": {
-<<<<<<< HEAD
-    "analytics": "dabf1c9c-02dd-42e7-a922-f9a97d217fcb"
-=======
     "analytics": "f9a77232-47e5-4929-a677-4325600983a8"
->>>>>>> 28a05bb64011b9cfce70c5f31aa26acf5277d97c
   }
 }
