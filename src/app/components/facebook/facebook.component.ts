@@ -86,6 +86,55 @@ export class FacebookComponent implements OnInit {
       // console.log(this.us);
     });
   }
+  ngDocheck() {
+    this.authService.authState.subscribe((us) => {
+      this.us = us;
+      console.log(this.us);
+      this.idtoken = this.us.authToken;
+      console.log('Hola mundo' + this.idtoken);
+
+      //Servicio con Facebook
+      this._userService.signupFB(this.idtoken, this.user).subscribe(
+        (response) => {
+          console.log(response);
+
+          this.identity = response.usuario;
+
+          console.log(response);
+          // this._router.navigate(['/request']);
+
+          // this.cerrar = response.usuario.google;
+          //console.log('CERRANDO ' + this.cerrar);
+          if (!this.identity || !this.identity._id) {
+            this.status = 'error';
+            console.log(this.status);
+          } else {
+            // PERSISTIR DATOS DEL USUARIO
+            localStorage.setItem('identity', JSON.stringify(this.identity));
+            localStorage.setItem('token', response.token);
+            //localStorage.setItem('token', this.idtoken);
+            //this.getToken();
+            this.status = 'success';
+            this._router.navigate(['/request']);
+            console.log(this.status);
+
+            // Conseguir el token
+          }
+        },
+        (error) => {
+          var errorMessage = <any>error;
+          console.log(errorMessage);
+
+          if (errorMessage != null) {
+            this.status = 'error';
+          }
+        }
+      );
+
+      this.loggedIn = us != null;
+      // console.log(this.us);
+    });
+  }
 
   getToken() {
     this._userService.signup(this.user, 'true').subscribe(
