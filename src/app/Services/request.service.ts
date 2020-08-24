@@ -13,6 +13,7 @@ export class RequestService {
   }
 
   addRequest(token, request): Observable<any> {
+<<<<<<< HEAD
     /*
     let params = JSON.stringify(request);
     let headers = new HttpHeaders()
@@ -25,6 +26,8 @@ export class RequestService {
       headers: headers,
     });*/
     console.log(token);
+=======
+>>>>>>> f1c49709a95079ed79e6b7eda96b36cf16911b15
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     myHeaders.append('x-access-token', token);
