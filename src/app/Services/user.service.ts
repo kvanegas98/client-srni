@@ -68,14 +68,11 @@ export class UserService {
     var urlencoded = new URLSearchParams();
     //ENviando token
     urlencoded.append('idtoken', idtoken);
-<<<<<<< HEAD
     //Enviando objeto Usuario
     urlencoded.append('nombre', user.firstName);
     urlencoded.append('email', user.email);
     urlencoded.append('img', user.photoUrl);
     urlencoded.append('Papellido', user.lastName);
-=======
->>>>>>> f1c49709a95079ed79e6b7eda96b36cf16911b15
 
     var requestOptions: any = {
       method: 'POST',

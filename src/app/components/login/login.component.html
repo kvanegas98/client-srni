@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!-- <header class="login_header">
     <img class="header_img" src="../assets/img/logo-platzi.png" />
 </header>
@@ -41,67 +40,6 @@
                          SignUp
                     </a>
         </p>
-=======
-<header class="login_header">
-  <img class="header_img" src="../assets/img/logo-platzi.png" />
-</header>
-<section class="login">
-  <section class="login__container">
-    <h2>Login</h2>
-    <form
-      #loginForm="ngForm"
-      (ngSubmit)="onSubmit()"
-      class="login__container--form"
-    >
-      <input
-        class="input"
-        type="text"
-        placeholder="Email"
-        type="email"
-        name="email"
-        #email="ngModel"
-        [(ngModel)]="user.email"
-        required
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-      />
-      <span *ngIf="!email.valid && email.touched">
-        El email no es correcto
-      </span>
-      <input
-        class="input"
-        type="password"
-        placeholder="Password"
-        name="password"
-        #password="ngModel"
-        [(ngModel)]="user.password"
-        required
-      />
-      <span *ngIf="!password.valid && password.touched">
-        La contraseña es obligatoria
-      </span>
-      <button [disabled]="!loginForm.form.valid" class="button-1">Login</button>
-      <div class="login__container--remember">
-        <a href="/ ">I forgot my password</a>
-      </div>
-    </form>
-    <section class="login_container--social-media">
-      <div>
-        <img
-          src="../assets/img/google-icon.png "
-          alt="google "
-          (click)="signInWithGoogle()"
-        />
-        Login with Gooogle
-      </div>
-      <div>
-        <img
-          src="../assets/img/twitter-icon.png "
-          alt="google "
-          (click)="goFB()"
-        />
-        Login with Twitter
-      </div>
->>>>>>> f1c49709a95079ed79e6b7eda96b36cf16911b15
     </section>
     <p class="login_container--register">
       You dont have an account
@@ -117,56 +55,93 @@
     </a>
   </p>
 </section>
-<<<<<<< HEAD
 <footer class="footer ">
     <a href="/ ">Terms and conditions</a>
     <a href="/ ">Terms of privacy</a>
     <a href="/ ">Help</a>
 </footer> -->
 <div class="login">
-
-    <div id="logreg-forms">
-        <div class="alert alert-success" *ngIf="status == 'success'">
-            Te has identificado correctamente, bienvenido!!
-        </div>
-
-        <div class="alert alert-danger" *ngIf="status == 'error'">
-            No te has podido identificar correctamente!!
-        </div>
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form-signin">
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
-            <div class="social-login">
-                <button (click)="goFB()" class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
-                <button (click)="signInWithGoogle()" class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
-            </div>
-            <p style="text-align:center"> OR </p>
-            <input name="email" #email="ngModel" [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" id="inputEmail" class="form-control" placeholder="Email address" autofocus="">
-            <span class="text-danger" *ngIf="!email.valid && email.touched">
-				El email no es correcto
-			</span>
-            <input name="password" #password="ngModel" [(ngModel)]="user.password" required type="password" id="inputPassword" class="form-control" placeholder="Password">
-            <span class="text-danger" *ngIf="!password.valid && password.touched">
-				 La contraseña es obligatoria
-			</span>
-            <button [disabled]="!loginForm.form.valid" class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
-            <!-- <a href="#" id="forgot_pswd">Forgot password?</a> -->
-            <br>
-            <!-- <p>Don't have an account!</p>  -->
-            <button (click)="newAccount()" class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
-        </form>>
-
+  <div id="logreg-forms">
+    <div class="alert alert-success" *ngIf="status == 'success'">
+      Te has identificado correctamente, bienvenido!!
     </div>
-    <footer class="footer ">
-        <!-- <a href="/ ">Terms and conditions</a>
+
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+      No te has podido identificar correctamente!!
+    </div>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form-signin">
+      <h1 class="h3 mb-3 font-weight-normal" style="text-align: center;">
+        Sign in
+      </h1>
+      <div class="social-login">
+        <button
+          (click)="goFB()"
+          class="btn facebook-btn social-btn"
+          type="button"
+        >
+          <span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span>
+        </button>
+        <button
+          (click)="signInWithGoogle()"
+          class="btn google-btn social-btn"
+          type="button"
+        >
+          <span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span>
+        </button>
+      </div>
+      <p style="text-align: center;">OR</p>
+      <input
+        name="email"
+        #email="ngModel"
+        [(ngModel)]="user.email"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        type="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Email address"
+        autofocus=""
+      />
+      <span class="text-danger" *ngIf="!email.valid && email.touched">
+        El email no es correcto
+      </span>
+      <input
+        name="password"
+        #password="ngModel"
+        [(ngModel)]="user.password"
+        required
+        type="password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="Password"
+      />
+      <span class="text-danger" *ngIf="!password.valid && password.touched">
+        La contraseña es obligatoria
+      </span>
+      <button
+        [disabled]="!loginForm.form.valid"
+        class="btn btn-success btn-block"
+        type="submit"
+      >
+        <i class="fas fa-sign-in-alt"></i> Sign in
+      </button>
+      <!-- <a href="#" id="forgot_pswd">Forgot password?</a> -->
+      <br />
+      <!-- <p>Don't have an account!</p>  -->
+      <button
+        (click)="newAccount()"
+        class="btn btn-primary btn-block"
+        type="button"
+        id="btn-signup"
+      >
+        <i class="fas fa-user-plus"></i> Sign up New Account
+      </button>
+    </form>
+    >
+  </div>
+  <footer class="footer">
+    <!-- <a href="/ ">Terms and conditions</a>
         <a href="/ ">Terms of privacy</a>
         <a href="/ ">Help</a> -->
-    </footer>
+  </footer>
 </div>
-=======
-
-<footer class="footer">
-  <a href="/ ">Terms and conditions</a>
-  <a href="/ ">Terms of privacy</a>
-  <a href="/ ">Help</a>
-</footer>
->>>>>>> f1c49709a95079ed79e6b7eda96b36cf16911b15
