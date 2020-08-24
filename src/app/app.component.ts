@@ -50,7 +50,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngDoCheck() {
     this.identity = this._userService.getIdentity();
-    console.log(this.identity);
+    //console.log(this.identity);
     this.identity &&
       this.authService.authState.subscribe((us) => {
         this.us = us;

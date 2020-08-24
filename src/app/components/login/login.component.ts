@@ -152,7 +152,7 @@ export class LoginComponent implements OnInit {
     this._userService.signup(this.user).subscribe(
       (response) => {
         this.identity = response.usuario;
-        console.log(response);
+        //   console.log(response);
         // this._router.navigate(['/request']);
 
         // console.log('OKKKKKKKKKK' + this.identity);

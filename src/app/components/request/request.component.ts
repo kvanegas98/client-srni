@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { GLOBAL } from '../../services/global';
 import { RequestService } from '../../services/request.service';
 import { Request } from 'src/app/models/request';
 
@@ -21,7 +22,50 @@ export class RequestComponent implements OnInit {
   public token;
   public url: string;
 
-  //@Input() user: string;
+  /*afuConfig = {
+    multiple: false,
+    formatsAllowed: '.jpg,.png, .gif, .jpeg',
+    maxSize: '100',
+    uploadAPI: {
+      // url: GLOBAL.url + 'solicitud',
+    },
+    theme: 'attachPin',
+    hideProgressBar: true,
+    hideResetBtn: true,
+    hideSelectBtn: true,
+    replaceTexts: {
+      selectFileBtn: 'Select Files',
+      resetBtn: 'Reset',
+      uploadBtn: 'Upload',
+      dragNDropBox: 'Drag N Drop',
+      attachPinBtn: 'Sube tu archivo para la solicitud...',
+      afterUploadMsg_success: 'Successfully Uploaded !',
+      afterUploadMsg_error: 'Upload Failed !',
+    },
+  };*/
+
+  afuConfig = {
+    multiple: false,
+    formatsAllowed: '.jpg,.png, .gif, .jpeg, .mp4',
+    maxSize: '10000',
+    uploadAPI: {
+      //url: Global.url + 'upload-image/',
+      responseType: 'blob',
+    },
+    theme: 'attachPin',
+    hideProgressBar: true,
+    hideResetBtn: true,
+    hideSelectBtn: true,
+    replaceTexts: {
+      selectFileBtn: 'Select Files',
+      resetBtn: 'Reset',
+      uploadBtn: 'Upload',
+      dragNDropBox: 'Drag N Drop',
+      attachPinBtn: 'Sube tu archivo para la noticia...',
+      afterUploadMsg_success: 'Successfully Uploaded !',
+      afterUploadMsg_error: 'Upload Failed !',
+    },
+  };
 
   constructor(
     private _route: ActivatedRoute,
@@ -45,6 +89,7 @@ export class RequestComponent implements OnInit {
       (response) => {
         //if (response.user && response.user._id) {
         console.log(response);
+        console.log('El asunto' + response.solicitudDB.archivo);
         this.status = 'success';
         //Alerta
         swal(
@@ -66,6 +111,14 @@ export class RequestComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
+
+  imageUpload(event) {
+    //let image_data = JSON.parse(data);
+    alert(event);
+
+    // alert(image_data);
+    //this.request.adjunto = image_data.image;
   }
 
   /*onCancel(form) {
