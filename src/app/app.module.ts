@@ -11,6 +11,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RequestComponent } from './components/request/request.component';
 
+import { AngularFileUploaderModule } from 'angular-file-uploader';
+
 // Servicios
 import { UserService } from './services/user.service';
 import { UserGuard } from './services/user.guard';
@@ -41,6 +43,7 @@ import { FacebookComponent } from './components/facebook/facebook.component';
     routing,
     FormsModule,
     HttpClientModule,
+    AngularFileUploaderModule,
     SocialLoginModule,
   ],
   providers: [
@@ -61,6 +64,7 @@ import { FacebookComponent } from './components/facebook/facebook.component';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
+            // provider: new FacebookLoginProvider('301893964236415'),
             provider: new FacebookLoginProvider('617948235495154'),
           },
           {

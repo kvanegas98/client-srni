@@ -144,47 +144,53 @@
 			                    </span>
                             </div>
 
-                            <div class="form-group ">
-                                <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control input-sm " placeholder="Contraseña " required>
-                                <span class="text-danger " *ngIf="!password.valid && password.touched ">
-				                     La contraseña es obligatoria!!!
-			                    </span>
+                            <div class="form-group">
+                                <input name="email " #email="ngModel" [(ngModel)]="user.email" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" class="form-control input-sm" placeholder="Correo electrónico " />
+                                <span class="text-danger" *ngIf="!email.valid && email.touched">
+                  El correo es incorrecto!!!
+                </span>
                             </div>
 
-                            <div class="row ">
-                                <div class="col-xs-6 col-sm-6 col-md-6 ">
-                                    <div class="form-group ">
-                                        <input name="tel" #tel="ngModel" [(ngModel)]="user.telefono" type="text " class="form-control input-sm " placeholder="Telefono " pattern="^[2]\d{7}$">
-                                        <span class="text-danger " *ngIf="tel.invalid">
-				                     (Campo no requerido) Número de telefono incorrecto!!!
-			                    </span>
+                            <div class="form-group">
+                                <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control input-sm" placeholder="Contraseña " required />
+                                <span class="text-danger" *ngIf="!password.valid && password.touched">
+                  La contraseña es obligatoria!!!
+                </span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input name="tel" #tel="ngModel" [(ngModel)]="user.telefono" type="text " class="form-control input-sm" placeholder="Telefono " pattern="^[2]\d{7}$" />
+                                        <span class="text-danger" *ngIf="tel.invalid">
+                      (Campo no requerido) Número de telefono incorrecto!!!
+                    </span>
                                     </div>
                                 </div>
-                                <div class=" col-xs-6 col-sm-6 col-md-6 ">
-                                    <div class="form-group ">
-                                        <input name="mov" #mov="ngModel" [(ngModel)]="user.movil" type="text " class="form-control input-sm " placeholder="Movil " pattern="^[5|7|8]\d{7}$">
-                                        <span class="text-danger " *ngIf="mov.invalid">
-				                        (Campo no requerido) Número móvil incorrecto!!!
-			                    </span>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input name="mov" #mov="ngModel" [(ngModel)]="user.movil" type="text " class="form-control input-sm" placeholder="Movil " pattern="^[5|7|8]\d{7}$" />
+                                        <span class="text-danger" *ngIf="mov.invalid">
+                      (Campo no requerido) Número móvil incorrecto!!!
+                    </span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-group ">
-                                <input name="direccion1" #direccion1="ngModel" [(ngModel)]="user.direccion1" type="text " class="form-control input-sm " placeholder="Dirección 1 ">
+                            <div class="form-group">
+                                <input name="direccion1" #direccion1="ngModel" [(ngModel)]="user.direccion1" type="text " class="form-control input-sm" placeholder="Dirección 1 " />
                             </div>
 
-                            <div class="form-group ">
-                                <input name="direccion2" #direccion2="ngModel" [(ngModel)]="user.direccion2" type="text " class="form-control input-sm " placeholder="Direccion 2 ">
+                            <div class="form-group">
+                                <input name="direccion2" #direccion2="ngModel" [(ngModel)]="user.direccion2" type="text " class="form-control input-sm" placeholder="Direccion 2 " />
                             </div>
 
-                            <div class="form-group ">
-                                <input name="ced" #ced="ngModel" [(ngModel)]="user.cedula " type="text " class="form-control input-sm " placeholder="Cédula ">
+                            <div class="form-group">
+                                <input name="ced" #ced="ngModel" [(ngModel)]="user.cedula" type="text " class="form-control input-sm" placeholder="Cédula " />
                             </div>
 
-                            <div class="form-group ">
-
-                                <textarea name="int" #int="ngModel" [(ngModel)]="user.intereses " class="form-control " id="exampleFormControlTextarea1 " rows="3 " placeholder="Intereses "></textarea>
+                            <div class="form-group">
+                                <textarea name="int" #int="ngModel" [(ngModel)]="user.intereses" class="form-control" id="exampleFormControlTextarea1 " rows="3 " placeholder="Intereses "></textarea>
                             </div>
 
                             <input type="submit" value="Register" class="btn btn-info btn-block" [disabled]="!registerForm.form.valid" />
@@ -192,5 +198,3 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>

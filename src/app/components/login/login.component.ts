@@ -93,7 +93,13 @@ export class LoginComponent implements OnInit {
 
     this.authService.authState.subscribe((us) => {
       this.us = us;
-      console.log(this.us);
+
+      this.loggedIn = us != null;
+
+      if (!this.loggedIn) {
+        return;
+      }
+
       this.idtoken = this.us.idToken;
       console.log('Hola mundo' + this.idtoken);
 
@@ -138,7 +144,6 @@ export class LoginComponent implements OnInit {
         }
       );
 
-      this.loggedIn = us != null;
       // console.log(this.us);
     });
   }
@@ -147,7 +152,7 @@ export class LoginComponent implements OnInit {
     this._userService.signup(this.user).subscribe(
       (response) => {
         this.identity = response.usuario;
-        console.log(response);
+        //   console.log(response);
         // this._router.navigate(['/request']);
 
         // console.log('OKKKKKKKKKK' + this.identity);
