@@ -11,308 +11,441 @@
                 El registro no ha podido completarse, quizas tu email ya esté en uso, intentalo de nuevo con otros datos
             </div>
  -->
-      <form
-        #registerForm="ngForm"
-        (ngSubmit)="onSubmit(registerForm)"
-        class="mr4 absolute-center"
-      >
-        <p>
-          <label> Nombre</label>
-          <input
-            type="text"
-            name="nombre"
-            #nombre="ngModel"
-            [(ngModel)]="user.nombre"
-            class="form-control"
-            required
-          />
-          <span *ngIf="!nombre.valid && nombre.touched">
-            El primer nombre es obligatorio!!
-          </span>
-        </p>
+<form
+  #registerForm="ngForm"
+  (ngSubmit)="onSubmit(registerForm)"
+  class="mr4 absolute-center"
+>
+  <p>
+    <label> Nombre</label>
+    <input
+      type="text"
+      name="nombre"
+      #nombre="ngModel"
+      [(ngModel)]="user.nombre"
+      class="form-control"
+      required
+    />
+    <span *ngIf="!nombre.valid && nombre.touched">
+      El primer nombre es obligatorio!!
+    </span>
+  </p>
 
-        <p>
-          <label>Primer Apellido</label>
-          <input
-            type="text"
-            name="primerApellido"
-            #primerApellido="ngModel"
-            [(ngModel)]="user.Papellido"
-            class="form-control"
-            required
-          />
-          <span *ngIf="!primerApellido.valid && primerApellido.touched">
-            El primer Apellido es obligatorio!!
-          </span>
-        </p>
+  <p>
+    <label>Primer Apellido</label>
+    <input
+      type="text"
+      name="primerApellido"
+      #primerApellido="ngModel"
+      [(ngModel)]="user.Papellido"
+      class="form-control"
+      required
+    />
+    <span *ngIf="!primerApellido.valid && primerApellido.touched">
+      El primer Apellido es obligatorio!!
+    </span>
+  </p>
 
-        <p>
-          <label>Segundo Apellido</label>
-          <input
-            type="text"
-            name="segundoApellido"
-            #segundoApellido="ngModel"
-            [(ngModel)]="user.Sapellido"
-            class="form-control"
-          />
-        </p>
+  <p>
+    <label>Segundo Apellido</label>
+    <input
+      type="text"
+      name="segundoApellido"
+      #segundoApellido="ngModel"
+      [(ngModel)]="user.Sapellido"
+      class="form-control"
+    />
+  </p>
 
-        <p>
-          <label>Dirección 1</label>
-          <input
-            type="text"
-            name="direccion1"
-            #direccion1="ngModel"
-            [(ngModel)]="user.direccion1"
-            class="form-control"
-            required
-          />
-          <span *ngIf="!direccion1.valid && direccion1.touched">
-            La primera dirección es obligatorio!!
-          </span>
-        </p>
+  <p>
+    <label>Dirección 1</label>
+    <input
+      type="text"
+      name="direccion1"
+      #direccion1="ngModel"
+      [(ngModel)]="user.direccion1"
+      class="form-control"
+      required
+    />
+    <span *ngIf="!direccion1.valid && direccion1.touched">
+      La primera dirección es obligatorio!!
+    </span>
+  </p>
 
-        <p>
-          <label>Dirección 2</label>
-          <input
-            type="text"
-            name="direccion2"
-            #direccion2="ngModel"
-            [(ngModel)]="user.direccion2"
-            class="form-control"
-          />
-        </p>
+  <p>
+    <label>Dirección 2</label>
+    <input
+      type="text"
+      name="direccion2"
+      #direccion2="ngModel"
+      [(ngModel)]="user.direccion2"
+      class="form-control"
+    />
+  </p>
 
-        <p>
-          <label>Correo electrónico</label>
-          <input
-            type="email "
-            name="email "
-            #email="ngModel"
-            [(ngModel)]="user.email"
-            class="form-control"
-            required
-            pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-          />
-          <span *ngIf="!email.valid && email.touched">
-            El correo no es correcto!!
-          </span>
-        </p>
+  <p>
+    <label>Correo electrónico</label>
+    <input
+      type="email "
+      name="email "
+      #email="ngModel"
+      [(ngModel)]="user.email"
+      class="form-control"
+      required
+      pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+    />
+    <span *ngIf="!email.valid && email.touched">
+      El correo no es correcto!!
+    </span>
+  </p>
 
-        <p>
-          <label>Contraseña</label>
-          <input
-            type="password"
-            name="password"
-            #password="ngModel"
-            [(ngModel)]="user.password"
-            class="form-control"
-            required
-          />
-          <span *ngIf="!password.valid && password.touched">
-            La constraseña es obligatoria!!
-          </span>
-        </p>
+  <p>
+    <label>Contraseña</label>
+    <input
+      type="password"
+      name="password"
+      #password="ngModel"
+      [(ngModel)]="user.password"
+      class="form-control"
+      required
+    />
+    <span *ngIf="!password.valid && password.touched">
+      La constraseña es obligatoria!!
+    </span>
+  </p>
 
-        <p>
-          <label>Telefono</label>
-          <input
-            type="text"
-            name="tel"
-            #tel="ngModel"
-            [(ngModel)]="user.telefono"
-            class="form-control"
-            required
-            pattern="^[2]\d{7}$"
-          />
-          <span *ngIf="!tel.valid && tel.touched">
-            El numero de telefono es incorrecto
-          </span>
-        </p>
-        <p>
-          <label>Móvil</label>
-          <input
-            type="text"
-            name="mov"
-            #mov="ngModel"
-            [(ngModel)]="user.movil"
-            class="form-control"
-            required
-            pattern="^[5|7|8]\d{7}$"
-          />
-          <span *ngIf="!mov.valid && mov.touched">
-            El numero de telefono es incorrecto
-          </span>
-        </p>
+  <p>
+    <label>Telefono</label>
+    <input
+      type="text"
+      name="tel"
+      #tel="ngModel"
+      [(ngModel)]="user.telefono"
+      class="form-control"
+      required
+      pattern="^[2]\d{7}$"
+    />
+    <span *ngIf="!tel.valid && tel.touched">
+      El numero de telefono es incorrecto
+    </span>
+  </p>
+  <p>
+    <label>Móvil</label>
+    <input
+      type="text"
+      name="mov"
+      #mov="ngModel"
+      [(ngModel)]="user.movil"
+      class="form-control"
+      required
+      pattern="^[5|7|8]\d{7}$"
+    />
+    <span *ngIf="!mov.valid && mov.touched">
+      El numero de telefono es incorrecto
+    </span>
+  </p>
 
-        <p>
-          <label>Cédula</label>
-          <input
-            type="text"
-            name="ced"
-            #ced="ngModel"
-            [(ngModel)]="user.cedula"
-            class="form-control"
-            required
-            pattern=""
-          />
-          <span *ngIf="!ced.valid && ced.touched">
-            La cédula es incorrecta
-          </span>
-        </p>
+  <p>
+    <label>Cédula</label>
+    <input
+      type="text"
+      name="ced"
+      #ced="ngModel"
+      [(ngModel)]="user.cedula"
+      class="form-control"
+      required
+      pattern=""
+    />
+    <span *ngIf="!ced.valid && ced.touched">
+      La cédula es incorrecta
+    </span>
+  </p>
 
-        <p>
-          <label>Intereses</label>
-          <input
-            type="text-a"
-            name="ced"
-            #int="ngModel"
-            [(ngModel)]="user.intereses"
-            class="form-control"
-            pattern=""
-          />
-        </p>
+  <p>
+    <label>Intereses</label>
+    <input
+      type="text-a"
+      name="ced"
+      #int="ngModel"
+      [(ngModel)]="user.intereses"
+      class="form-control"
+      pattern=""
+    />
+  </p>
 
-        <input
-          type="submit"
-          value="{{ title }}"
-          class="btn btn-success"
-          [disabled]="!registerForm.form.valid"
-        />
-      </form>
-    </div>
-  </div>
-</div>
-
-<<<<<<< HEAD
-<br> -->
-=======
-<br />
->>>>>>> f1c49709a95079ed79e6b7eda96b36cf16911b15
+  <input
+    type="submit"
+    value="{{ title }}"
+    class="btn btn-success"
+    [disabled]="!registerForm.form.valid"
+  />
+</form>
 
 <div class="login">
-    <div class="container">
-        <div class="row centered-form">
-            <div class="alert alert-success text-center" *ngIf="status == 'success'">
-                Registro completado correctamente, <a [routerLink]="['/login']">identificate aquí</a>
-            </div>
+  <div class="container">
+    <div class="row centered-form">
+      <div class="alert alert-success text-center" *ngIf="status == 'success'">
+        Registro completado correctamente,
+        <a [routerLink]="['/login']">identificate aquí</a>
+      </div>
 
-            <div class="alert alert-danger text-center" *ngIf="status == 'error'">
-                El registro no ha podido completarse, quizas tu email ya esté en uso, intentalo de nuevo con otros datos
-            </div>
-            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">Registrate</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" role="form">
-                            <div class="form-group">
-                                <input name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" type="text" name="email" id="email" class="form-control input-sm" placeholder="Nombre" required>
-                                <span class="text-danger" *ngIf="!nombre.valid && nombre.touched">
-				                     El nombre es obligatorio!!
-			                    </span>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6 ">
-                                    <div class="form-group ">
-                                        <input name="primerapellidos" #primerapellido="ngModel" [(ngModel)]="user.Papellido" type=" text " name="last_name " id="last_name " class="form-control input-sm " placeholder="Primer apellido " required>
-                                        <span class="text-danger" *ngIf="!primerapellido.valid && primerapellido.touched">
-				                             El primer apellido es obligatorio!!
-			                    </span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 ">
-                                    <div class="form-group ">
-                                        <input name="segundoApellido" #segundoApellido="ngModel" [(ngModel)]="user.Sapellido" type=" text " name="last_name " id="last_name " class="form-control input-sm " placeholder="Segundo apellido ">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group ">
-                                <input name="email " #email="ngModel" [(ngModel)]="user.email" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" name="email " id="email " class="form-control input-sm " placeholder="Correo electrónico ">
-                                <span class="text-danger " *ngIf="!email.valid && email.touched ">
-				                     El correo es incorrecto!!!
-			                    </span>
-                            </div>
-
-                            <div class="form-group ">
-                                <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control input-sm " placeholder="Contraseña " required>
-                                <span class="text-danger " *ngIf="!password.valid && password.touched ">
-				                     La contraseña es obligatoria!!!
-			                    </span>
-                            </div>
-
-                            <div class="row ">
-                                <div class="col-xs-6 col-sm-6 col-md-6 ">
-                                    <div class="form-group ">
-                                        <input name="tel" #tel="ngModel" [(ngModel)]="user.telefono" type="text " class="form-control input-sm " placeholder="Telefono " pattern="^[2]\d{7}$">
-                                        <span class="text-danger " *ngIf="tel.invalid">
-				                     (Campo no requerido) Número de telefono incorrecto!!!
-			                    </span>
-                                    </div>
-                                </div>
-                                <div class=" col-xs-6 col-sm-6 col-md-6 ">
-                                    <div class="form-group ">
-                                        <input name="mov" #mov="ngModel" [(ngModel)]="user.movil" type="text " class="form-control input-sm " placeholder="Movil " pattern="^[5|7|8]\d{7}$">
-                                        <span class="text-danger " *ngIf="mov.invalid">
-				                        (Campo no requerido) Número móvil incorrecto!!!
-			                    </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group ">
-                                <input name="direccion1" #direccion1="ngModel" [(ngModel)]="user.direccion1" type="text " class="form-control input-sm " placeholder="Dirección 1 ">
-                            </div>
-
-                            <div class="form-group ">
-                                <input name="direccion2" #direccion2="ngModel" [(ngModel)]="user.direccion2" type="text " class="form-control input-sm " placeholder="Direccion 2 ">
-                            </div>
-
-                            <div class="form-group ">
-                                <input name="ced" #ced="ngModel" [(ngModel)]="user.cedula " type="text " class="form-control input-sm " placeholder="Cédula ">
-                            </div>
-
-                            <div class="form-group ">
-
-                                <textarea name="int" #int="ngModel" [(ngModel)]="user.intereses " class="form-control " id="exampleFormControlTextarea1 " rows="3 " placeholder="Intereses "></textarea>
-                            </div>
-
-                            <input type="submit" value="Register" class="btn btn-info btn-block" [disabled]="!registerForm.form.valid" />
-                        </form>
-                    </div>
+      <div class="alert alert-danger text-center" *ngIf="status == 'error'">
+        El registro no ha podido completarse, quizas tu email ya esté en uso,
+        intentalo de nuevo con otros datos
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">Registrate</h3>
+          </div>
+          <div class="panel-body">
+            <form
+              #registerForm="ngForm"
+              (ngSubmit)="onSubmit(registerForm)"
+              role="form"
+            >
+              <div class="form-group">
+                <input
+                  name="nombre"
+                  #nombre="ngModel"
+                  [(ngModel)]="user.nombre"
+                  type="text"
+                  name="email"
+                  id="email"
+                  class="form-control input-sm"
+                  placeholder="Nombre"
+                  required
+                />
+                <span
+                  class="text-danger"
+                  *ngIf="!nombre.valid && nombre.touched"
+                >
+                  El nombre es obligatorio!!
+                </span>
+              </div>
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      name="primerapellidos"
+                      #primerapellido="ngModel"
+                      [(ngModel)]="user.Papellido"
+                      type=" text "
+                      name="last_name "
+                      id="last_name "
+                      class="form-control input-sm"
+                      placeholder="Primer apellido "
+                      required
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="!primerapellido.valid && primerapellido.touched"
+                    >
+                      El primer apellido es obligatorio!!
+                    </span>
+                  </div>
                 </div>
-            </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      name="segundoApellido"
+                      #segundoApellido="ngModel"
+                      [(ngModel)]="user.Sapellido"
+                      type=" text "
+                      name="last_name "
+                      id="last_name "
+                      class="form-control input-sm"
+                      placeholder="Segundo apellido "
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input
+                  name="email "
+                  #email="ngModel"
+                  [(ngModel)]="user.email"
+                  required
+                  pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                  name="email "
+                  id="email "
+                  class="form-control input-sm"
+                  placeholder="Correo electrónico "
+                />
+                <span class="text-danger" *ngIf="!email.valid && email.touched">
+                  El correo es incorrecto!!!
+                </span>
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="password"
+                  name="password"
+                  #password="ngModel"
+                  [(ngModel)]="user.password"
+                  class="form-control input-sm"
+                  placeholder="Contraseña "
+                  required
+                />
+                <span
+                  class="text-danger"
+                  *ngIf="!password.valid && password.touched"
+                >
+                  La contraseña es obligatoria!!!
+                </span>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      name="tel"
+                      #tel="ngModel"
+                      [(ngModel)]="user.telefono"
+                      type="text "
+                      class="form-control input-sm"
+                      placeholder="Telefono "
+                      pattern="^[2]\d{7}$"
+                    />
+                    <span class="text-danger" *ngIf="tel.invalid">
+                      (Campo no requerido) Número de telefono incorrecto!!!
+                    </span>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      name="mov"
+                      #mov="ngModel"
+                      [(ngModel)]="user.movil"
+                      type="text "
+                      class="form-control input-sm"
+                      placeholder="Movil "
+                      pattern="^[5|7|8]\d{7}$"
+                    />
+                    <span class="text-danger" *ngIf="mov.invalid">
+                      (Campo no requerido) Número móvil incorrecto!!!
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input
+                  name="direccion1"
+                  #direccion1="ngModel"
+                  [(ngModel)]="user.direccion1"
+                  type="text "
+                  class="form-control input-sm"
+                  placeholder="Dirección 1 "
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  name="direccion2"
+                  #direccion2="ngModel"
+                  [(ngModel)]="user.direccion2"
+                  type="text "
+                  class="form-control input-sm"
+                  placeholder="Direccion 2 "
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  name="ced"
+                  #ced="ngModel"
+                  [(ngModel)]="user.cedula"
+                  type="text "
+                  class="form-control input-sm"
+                  placeholder="Cédula "
+                />
+              </div>
+
+              <div class="form-group">
+                <textarea
+                  name="int"
+                  #int="ngModel"
+                  [(ngModel)]="user.intereses"
+                  class="form-control"
+                  id="exampleFormControlTextarea1 "
+                  rows="3 "
+                  placeholder="Intereses "
+                ></textarea>
+              </div>
+
+              <input
+                type="submit"
+                value="Register"
+                class="btn btn-info btn-block"
+                [disabled]="!registerForm.form.valid"
+              />
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-<<<<<<< HEAD
+  </div>
+
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="MainContent_text_reg_direccion" class="col-sm-4 control-label"
+        >Dirección 2:</label
+      >
+      <div class="col-sm-8">
+        <input
+          name="ctl00$MainContent$text_reg_direccion"
+          id="MainContent_text_reg_direccion"
+          class="form-control"
+          onkeyup="sync()"
+          type="text"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="MainContent_text_reg_localidad" class="col-sm-4 control-label"
+        >Email:</label
+      >
+      <div class="col-sm-8">
+        <input
+          name="ctl00$MainContent$text_reg_localidad"
+          id="MainContent_text_reg_localidad"
+          class="form-control"
+          onkeyup="sync()"
+          type="text"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="MainContent_text_reg_provincia" class="col-sm-4 control-label"
+        >Contraseña:</label
+      >
+      <div class="col-sm-8">
+        <input
+          name="ctl00$MainContent$text_reg_provincia"
+          id="MainContent_text_reg_provincia"
+          class="form-control"
+          onkeyup="sync()"
+          type="text"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="MainContent_text_reg_cp" class="col-sm-4 control-label"
+        >Cédula:</label
+      >
+      <div class="col-sm-8">
+        <input
+          name="ctl00$MainContent$text_reg_cp"
+          id="MainContent_text_reg_cp"
+          class="form-control"
+          onkeyup="sync()"
+          type="text"
+        />
+      </div>
+    </div>
+  </div>
+  -->
 </div>
-=======
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label for="MainContent_text_reg_direccion" class="col-sm-4 control-label">Dirección 2:</label>
-            <div class="col-sm-8">
-                <input name="ctl00$MainContent$text_reg_direccion" id="MainContent_text_reg_direccion" class="form-control" onkeyup="sync()" type="text">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="MainContent_text_reg_localidad" class="col-sm-4 control-label">Email:</label>
-            <div class="col-sm-8">
-                <input name="ctl00$MainContent$text_reg_localidad" id="MainContent_text_reg_localidad" class="form-control" onkeyup="sync()" type="text">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="MainContent_text_reg_provincia" class="col-sm-4 control-label">Contraseña:</label>
-            <div class="col-sm-8">
-                <input name="ctl00$MainContent$text_reg_provincia" id="MainContent_text_reg_provincia" class="form-control" onkeyup="sync()" type="text">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="MainContent_text_reg_cp" class="col-sm-4 control-label">Cédula:</label>
-            <div class="col-sm-8">
-                <input name="ctl00$MainContent$text_reg_cp" id="MainContent_text_reg_cp" class="form-control" onkeyup="sync()" type="text">
-            </div>
-        </div>
-    </div> -->
->>>>>>> f1c49709a95079ed79e6b7eda96b36cf16911b15
