@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.title = 'Identificate';
     this.user = new User('', '', '', '', '', '', '', '', '', '', '');
   }
-
+  /*
   ngDoCheck() {
     this.authService.authState.subscribe((us) => {
       this.us = us;
@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
       // console.log(this.us);
     });
   }
-
+*/
   ngOnInit() {
     console.log('Componente de login cargado...');
 
@@ -225,4 +225,61 @@ export class LoginComponent implements OnInit {
   signOut(): void {
     this.authService.signOut();
   }
+  /*
+  onSubmit() {
+    console.log(this.user);
+    this._userService.signup(this.user).subscribe(
+      (response) => {
+        console.log();
+      },
+      (error) => {
+        var errorMessage = <any>error;
+        console.log(errorMessage);
+
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
+      }
+    );
+  }
+  getToken() {
+    this._userService.signup(this.user, 'true').subscribe(
+      (response) => {
+        this.token = response.token;
+
+        console.log(this.token);
+
+        if (this.token.length <= 0) {
+          this.status = 'error';
+        } else {
+          // PERSISTIR TOKEN DEL USUARIO
+          localStorage.setItem('token', this.token);
+
+          // Conseguir los contadores o estadisticas del usuario
+          // this.getCounters();
+        }
+      },
+      (error) => {
+        var errorMessage = <any>error;
+        console.log(errorMessage);
+
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
+      }
+    );
+  }
+
+  /*getCounters() {
+    this._userService.getCounters().subscribe(
+      (response) => {
+        localStorage.setItem('stats', JSON.stringify(response));
+        this.status = 'success';
+        this._router.navigate(['/']);
+      },
+      (error) => {
+        console.log(<any>error);
+      }
+    );
+  } */
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
 import { User } from '../models/user';
+import { SocialUser } from 'angularx-social-login';
 
 @Injectable()
 export class UserService {
@@ -32,23 +33,10 @@ export class UserService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     // return this._http.post(this.url + 'login', params, { headers: headers });
-    return this._http.post(this.url + 'login', user);
+    return this._http.post(this.url + 'login', user, { headers: headers });
   }
 
   signupGoogle(idtoken): Observable<any> {
-    /* if (tokenId != null) {
-      user.gettoken = tokenId;
-    }*/
-
-    //
-    //let params = JSON.stringify(user);
-    //let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    /*let headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Authorization', idtoken);*/
-
-    //return this._http.post(this.url + 'google', { headers: headers });
-    //  return this._http.post(this.url + 'google', idtoken);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     // myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:8081');
@@ -57,12 +45,13 @@ export class UserService {
 
     var requestOptions: any = {
       method: 'POST',
+
       headers: myHeaders,
       body: urlencoded,
       redirect: 'follow',
     };
     const data$ = Observable.create((observer) => {
-      fetch('https://srni.herokuapp.com/google', requestOptions)
+      fetch(this.url + 'google', requestOptions)
         .then((response) => response.json()) // or text() or blob() etc.
         .then((data) => {
           observer.next(data);
@@ -71,29 +60,19 @@ export class UserService {
         .catch((err) => observer.error(err));
     });
     return data$;
-    //return this._http.post(this.url + 'google', '', requestOptions);
-    //return fetch('http://localhost:3000/google', requestOptions);
-    //>>>>>>> 4fb100a52859e90a896992f0846c267596b1b8f8
   }
 
-  signupFB(idtoken, user: User): Observable<any> {
+  signupFB(idtoken, user: SocialUser): Observable<any> {
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     var urlencoded = new URLSearchParams();
     //ENviando token
     urlencoded.append('idtoken', idtoken);
     //Enviando objeto Usuario
-    urlencoded.append('nombre', user.nombre);
+    urlencoded.append('nombre', user.firstName);
     urlencoded.append('email', user.email);
-    urlencoded.append('password', user.password);
-    urlencoded.append('Papellido', user.Papellido);
-    urlencoded.append('direccion1', user.direccion1);
-    urlencoded.append('direccion2', user.direccion2);
-    urlencoded.append('Sapellido', user.Sapellido);
-    urlencoded.append('movil', user.movil);
-    urlencoded.append('telefono', user.telefono);
-    urlencoded.append('cedula', user.cedula);
-    urlencoded.append('intereses', user.intereses);
+    urlencoded.append('img', user.photoUrl);
+    urlencoded.append('Papellido', user.lastName);
 
     var requestOptions: any = {
       method: 'POST',
@@ -102,7 +81,7 @@ export class UserService {
       redirect: 'follow',
     };
     const data$ = Observable.create((observer) => {
-      fetch('https://srni.herokuapp.com/facebook', requestOptions)
+      fetch(this.url + 'facebook', requestOptions)
         .then((response) => response.json())
         .then((data) => {
           observer.next(data);
@@ -138,58 +117,4 @@ export class UserService {
 
     return token;
   }
-
-  /* getStats() {
-       let stats = JSON.parse(localStorage.getItem('stats'));
-   
-       if (stats != 'undefined') {
-         this.stats = stats;
-       } else {
-         this.stats = null;
-       }
-   
-       return this.stats;
-     }*/
-
-  /* getCounters(userId = null): Observable<any> {
-    let headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Authorization', this.getToken());
-
-    if (userId != null) {
-      return this._http.get(this.url + 'counters/' + userId, {
-        headers: headers,
-      });
-    } else {
-      return this._http.get(this.url + 'counters', { headers: headers });
-    }
-  }*/
-
-  /*updateUser(user: User): Observable<any> {
-       let params = JSON.stringify(user);
-       let headers = new HttpHeaders()
-         .set('Content-Type', 'application/json')
-         .set('Authorization', this.getToken());
-   
-       return this._http.put(this.url + 'update-user/' + user._id, params, {
-         headers: headers,
-       });
-     }
-   
-     getUsers(page = null): Observable<any> {
-       let headers = new HttpHeaders()
-         .set('Content-Type', 'application/json')
-         .set('Authorization', this.getToken());
-   
-       return this._http.get(this.url + 'users/' + page, { headers: headers });
-     }
-   
-     getUser(id): Observable<any> {
-       let headers = new HttpHeaders()
-         .set('Content-Type', 'application/json')
-         .set('Authorization', this.getToken());
-   
-       return this._http.get(this.url + 'user/' + id, { headers: headers });
-     }
-   }*/
 }

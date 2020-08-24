@@ -61,7 +61,10 @@ import { FacebookComponent } from './components/facebook/facebook.component';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
+<<<<<<< HEAD
             // provider: new FacebookLoginProvider('301893964236415'),
+=======
+>>>>>>> f1c49709a95079ed79e6b7eda96b36cf16911b15
             provider: new FacebookLoginProvider('617948235495154'),
           },
           {

@@ -45,7 +45,7 @@ export class FacebookComponent implements OnInit {
       console.log('Hola mundo' + this.idtoken);
 
       //Servicio con Facebook
-      this._userService.signupFB(this.idtoken, this.user).subscribe(
+      this._userService.signupFB(this.idtoken, this.us).subscribe(
         (response) => {
           console.log(response);
 
@@ -94,7 +94,7 @@ export class FacebookComponent implements OnInit {
       console.log('Hola mundo' + this.idtoken);
 
       //Servicio con Facebook
-      this._userService.signupFB(this.idtoken, this.user).subscribe(
+      this._userService.signupFB(this.idtoken, this.us).subscribe(
         (response) => {
           console.log(response);
 

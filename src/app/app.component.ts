@@ -1,29 +1,3 @@
-/*import { Component,OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-})
-export class AppComponent implements OnInit {
-  public title: string;
-  public identity;
-  public url: string;
-
-  constructor(
-    private _route: ActivatedRoute,
-    private _router: Router,
-    private _userService: UserService
-  ) {
-    this.title = 'SRNI';
-    this.url = GLOBAL.url;
-  }
-
-  ngOnInit() {
-    this.identity = this._userService.getIdentity();
-  }
-}*/
-
 import { Component, OnInit, DoCheck, ɵConsole } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from './services/user.service';
