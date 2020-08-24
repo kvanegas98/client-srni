@@ -5,6 +5,9 @@ import { UserService } from '../../services/user.service';
 import { RequestService } from '../../services/request.service';
 import { Request } from 'src/app/models/request';
 
+//alertas
+import swal from 'sweetalert';
+
 @Component({
   selector: 'request',
   templateUrl: './request.component.html',
@@ -44,12 +47,23 @@ export class RequestComponent implements OnInit {
         //if (response.user && response.user._id) {
         console.log(response);
         this.status = 'success';
+        //Alerta
+        swal(
+          'Solicitud enviada ',
+          'La solicitud se ha enviado correctamente !!!',
+          'success'
+        );
         form.reset();
         /* } else {
           this.status = 'error';
         }*/
       },
       (error) => {
+        swal(
+          'Solicitud no enviada',
+          'La solicitud no ha sido enviada!!!',
+          'error'
+        );
         console.log(<any>error);
       }
     );

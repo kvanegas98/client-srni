@@ -3,6 +3,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
+//alertas
+import swal from 'sweetalert';
+
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -19,6 +22,7 @@ export class RegisterComponent implements OnInit {
     private _userService: UserService
   ) {
     this.title = 'Registrate';
+    // this.status = 'error';
     this.user = new User('', '', '', '', '', '', '', '', '', '', '');
   }
 
@@ -30,16 +34,31 @@ export class RegisterComponent implements OnInit {
     // console.log(this.user);
     this._userService.register(this.user).subscribe(
       (response) => {
-        //if (response.user && response.user._id) {
         console.log(response);
-        this.status = 'success';
-        form.reset();
-        /* } else {
-          this.status = 'error';
-        }*/
+
+        if (response.usuario._id && response.usuario) {
+          console.log(response);
+          this.status = 'success';
+          //Alerta
+          swal(
+            'Usuario creado ',
+            'El usuario ' +
+              response.usuario.nombre +
+              ' se ha creado correctamente !!!',
+            'success'
+          );
+          form.reset();
+        }
       },
       (error) => {
         console.log(<any>error);
+        this.status = 'error';
+        swal(
+          'Usuario no creado ',
+          'El registro no ha podido completarse, quizas tu email ya esté en uso, intentalo de nuevo con otros datos',
+          'error'
+        );
+        this.status = 'error';
       }
     );
   }

@@ -218,6 +218,10 @@ export class LoginComponent implements OnInit {
     this._router.navigate(['/facebook']);
   }
 
+  newAccount() {
+    this._router.navigate(['/registro']);
+  }
+
   signOut(): void {
     this.authService.signOut();
   }
