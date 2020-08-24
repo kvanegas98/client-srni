@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.title = 'Identificate';
     this.user = new User('', '', '', '', '', '', '', '', '', '', '');
   }
-
+  /*
   ngDoCheck() {
     this.authService.authState.subscribe((us) => {
       this.us = us;
@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
       // console.log(this.us);
     });
   }
-
+*/
   ngOnInit() {
     console.log('Componente de login cargado...');
 

@@ -24,7 +24,7 @@ export class RequestService {
     return this._http.post(this.url + 'solicitud', request, {
       headers: headers,
     });*/
-
+    console.log(token);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     myHeaders.append('x-access-token', token);
@@ -45,7 +45,7 @@ export class RequestService {
       redirect: 'follow',
     };
     const data$ = Observable.create((observer) => {
-      fetch('https://srni.herokuapp.com/solicitud', requestOptions)
+      fetch(this.url + 'solicitud', requestOptions)
         .then((response) => response.json()) // or text() or blob() etc.
         .then((data) => {
           observer.next(data);
