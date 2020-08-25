@@ -26,11 +26,12 @@ export class RequestService {
     });*/
     console.log(token);
     var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+    //  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     myHeaders.append('x-access-token', token);
     //myHeaders.append('Authorization', token);
     // myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:8081');
-    var urlencoded = new URLSearchParams();
+    var urlencoded = new FormData();
+    urlencoded.append('adjunto', request.adjunto[0], 'MI TEXT');
     urlencoded.append('tipoSolicitud', request.tipoSolicitud);
     urlencoded.append('asunto', request.asunto);
     urlencoded.append('detalle', request.detalle);
