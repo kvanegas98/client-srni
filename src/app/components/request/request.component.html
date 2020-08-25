@@ -167,6 +167,7 @@
                 <div class="custom-file form-group ">
                        <label class="custom-file-label col-md-1 col-md-offset-2 text-center " for="customFile ">Choose file</label>
                         <input
+                        (change)="onFileChanged($event)"
                         name="adjunto"
                          #adjunto="ngModel"
                         [(ngModel)]="request.adjunto" type="file" class="custom-file-input " >
