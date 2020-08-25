@@ -64,6 +64,7 @@ export class RequestComponent implements OnInit {
   onFileChanged(e) {
     console.log('File Changed ' + e);
     this.upload = e.target.files;
+    console.log(this.upload);
   }
 
   onSubmit(form) {
