@@ -21,6 +21,7 @@ export class RequestComponent implements OnInit {
   public identity;
   public token;
   public url: string;
+  public upload: Array<File>;
 
   /*afuConfig = {
     multiple: false,
@@ -44,29 +45,6 @@ export class RequestComponent implements OnInit {
     },
   };*/
 
-  afuConfig = {
-    multiple: false,
-    formatsAllowed: '.jpg,.png, .gif, .jpeg, .mp4',
-    maxSize: '10000',
-    uploadAPI: {
-      //url: Global.url + 'upload-image/',
-      responseType: 'blob',
-    },
-    theme: 'attachPin',
-    hideProgressBar: true,
-    hideResetBtn: true,
-    hideSelectBtn: true,
-    replaceTexts: {
-      selectFileBtn: 'Select Files',
-      resetBtn: 'Reset',
-      uploadBtn: 'Upload',
-      dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Sube tu archivo para la noticia...',
-      afterUploadMsg_success: 'Successfully Uploaded !',
-      afterUploadMsg_error: 'Upload Failed !',
-    },
-  };
-
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -74,7 +52,7 @@ export class RequestComponent implements OnInit {
     private _requestService: RequestService
   ) {
     this.title = 'Solicitudes';
-    this.request = new Request('', '', '', '', '', '', '');
+    this.request = new Request('', '', '', '', '', '', []);
     this.identity = this._userService.getIdentity();
 
     this.token = this._userService.getToken();
@@ -83,13 +61,27 @@ export class RequestComponent implements OnInit {
   ngOnInit() {
     console.log('Componente de Solicitud cargado...');
   }
+  onFileChanged(e) {
+    console.log('File Changed ' + e);
+    this.upload = e.target.files;
+  }
 
   onSubmit(form) {
+    // let formData = new FormData();
+
+    /*for (let i = 0; i < this.upload.length; i++) {
+      formData.append('uploads[]', this.upload[i], this.upload[i].name);
+      this.request.adjunto.append('uploads[]', this.upload[i], this.upload[i].name);
+  
+    }*/
+    this.request.adjunto = this.upload;
+    console.log('Probando Archivo' + this.request.adjunto);
+
     this._requestService.addRequest(this.token, this.request).subscribe(
       (response) => {
         //if (response.user && response.user._id) {
         console.log(response);
-        console.log('El asunto' + response.solicitudDB.archivo);
+        console.log('El asunto' + this.request.adjunto);
         this.status = 'success';
         //Alerta
         swal(
@@ -111,14 +103,6 @@ export class RequestComponent implements OnInit {
         console.log(<any>error);
       }
     );
-  }
-
-  imageUpload(event) {
-    //let image_data = JSON.parse(data);
-    alert(event);
-
-    // alert(image_data);
-    //this.request.adjunto = image_data.image;
   }
 
   /*onCancel(form) {

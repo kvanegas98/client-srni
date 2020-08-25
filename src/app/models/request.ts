@@ -6,6 +6,6 @@ export class Request {
     public info: string,
     public ubicacion: string,
     public prioridad: string,
-    public adjunto: string
+    public adjunto: Array<File> //public adjunto: string
   ) {}
 }
