@@ -22,28 +22,8 @@ export class RequestComponent implements OnInit {
   public token;
   public url: string;
   public upload: Array<File>;
-
-  /*afuConfig = {
-    multiple: false,
-    formatsAllowed: '.jpg,.png, .gif, .jpeg',
-    maxSize: '100',
-    uploadAPI: {
-      // url: GLOBAL.url + 'solicitud',
-    },
-    theme: 'attachPin',
-    hideProgressBar: true,
-    hideResetBtn: true,
-    hideSelectBtn: true,
-    replaceTexts: {
-      selectFileBtn: 'Select Files',
-      resetBtn: 'Reset',
-      uploadBtn: 'Upload',
-      dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Sube tu archivo para la solicitud...',
-      afterUploadMsg_success: 'Successfully Uploaded !',
-      afterUploadMsg_error: 'Upload Failed !',
-    },
-  };*/
+  public imagen: string;
+  public bytes = []; // get from server
 
   constructor(
     private _route: ActivatedRoute,
@@ -54,7 +34,7 @@ export class RequestComponent implements OnInit {
     this.title = 'Solicitudes';
     this.request = new Request('', '', '', '', '', '', []);
     this.identity = this._userService.getIdentity();
-
+    this.url = GLOBAL.url;
     this.token = this._userService.getToken();
   }
 
@@ -64,6 +44,17 @@ export class RequestComponent implements OnInit {
   onFileChanged(e) {
     console.log('File Changed ' + e);
     this.upload = e.target.files;
+
+    if (e.target.files && e.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(e.target.files[0]); // read file as data url
+
+      reader.onload = (e) => {
+        // called once readAsDataURL is completed
+        //this.image = event.target.result;
+      };
+    }
     console.log(this.upload);
   }
 
@@ -76,12 +67,22 @@ export class RequestComponent implements OnInit {
   
     }*/
     this.request.adjunto = this.upload;
+
+    var reader = new FileReader();
+    // reader.readAsDataURL(this.upload);
+
     console.log('Probando Archivo' + this.request.adjunto);
 
     this._requestService.addRequest(this.token, this.request).subscribe(
       (response) => {
+        //Obteniendo el bytes del adjunto de la imagen
+        this.bytes = response.solicitudDB.adjunto;
+        //Url dee arcchivo
+        this.imagen = 'data:image/JPEG;base64,' + this.bytes;
         //if (response.user && response.user._id) {
         console.log(response);
+        //console.log('Imagen []' + this.imagen);
+
         console.log('El asunto' + this.request.adjunto);
         this.status = 'success';
         //Alerta
