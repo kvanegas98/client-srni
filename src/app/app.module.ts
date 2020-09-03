@@ -29,6 +29,8 @@ import {
   AmazonLoginProvider,
 } from 'angularx-social-login';
 import { FacebookComponent } from './components/facebook/facebook.component';
+import { HomeComponent } from './components/home/home.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { FacebookComponent } from './components/facebook/facebook.component';
     RegisterComponent,
     RequestComponent,
     FacebookComponent,
+    HomeComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

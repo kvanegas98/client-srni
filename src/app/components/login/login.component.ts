@@ -103,21 +103,106 @@ export class LoginComponent implements OnInit {
       this.idtoken = this.us.idToken;
       console.log('Hola mundo' + this.idtoken);
 
+      //Vertificando el idtoken generado por google
+      if (this.idtoken) {
+        console.log('Autentificación por google');
+        this._userService.signupGoogle(this.idtoken).subscribe(
+          (response) => {
+            console.log(response);
+
+            this.identity = response.usuario;
+
+            console.log(response);
+
+            if (!this.identity || !this.identity._id) {
+              this.status = 'error';
+              console.log(this.status);
+            } else {
+              // PERSISTIR DATOS DEL USUARIO
+              localStorage.setItem('identity', JSON.stringify(this.identity));
+              localStorage.setItem('token', response.token);
+              //localStorage.setItem('token', this.idtoken);
+              //this.getToken();
+              this.status = 'success';
+              this._router.navigate(['/request']);
+              console.log(this.status);
+
+              // Conseguir el token
+            }
+          },
+          (error) => {
+            var errorMessage = <any>error;
+            console.log(errorMessage);
+
+            if (errorMessage != null) {
+              this.status = 'error';
+            }
+          }
+        );
+        //Vertificando el authTOjen generado por Facebook
+      } else if (this.us.authToken) {
+        console.log('Autentificacion por facebook');
+        this.authService.authState.subscribe((us) => {
+          /*this.us = us;
+          console.log(this.us);
+          this.loggedIn = us != null;*/
+          if (!this.loggedIn) return;
+
+          this.idtoken = this.us.authToken;
+          // console.log('Hola mundo' + this.idtoken);
+
+          //Servicio con Facebook
+          this._userService.signupFB(this.idtoken, this.us).subscribe(
+            (response) => {
+              console.log(response);
+
+              this.identity = response.usuario;
+
+              console.log(response);
+              // this._router.navigate(['/request']);
+
+              // this.cerrar = response.usuario.google;
+              //console.log('CERRANDO ' + this.cerrar);
+              if (!this.identity || !this.identity._id) {
+                this.status = 'error';
+                console.log(this.status);
+              } else {
+                // PERSISTIR DATOS DEL USUARIO
+                localStorage.setItem('identity', JSON.stringify(this.identity));
+                localStorage.setItem('token', response.token);
+                //localStorage.setItem('token', this.idtoken);
+                //this.getToken();
+                this.status = 'success';
+                this._router.navigate(['/request']);
+                console.log(this.status);
+
+                // Conseguir el token
+              }
+            },
+            (error) => {
+              var errorMessage = <any>error;
+              console.log(errorMessage);
+
+              if (errorMessage != null) {
+                this.status = 'error';
+              }
+            }
+          );
+
+          this.loggedIn = us != null;
+          // console.log(this.us);
+        });
+      }
+
       //Servicio con google
-      this._userService.signupGoogle(this.idtoken).subscribe(
+      /*  this._userService.signupGoogle(this.idtoken).subscribe(
         (response) => {
           console.log(response);
 
           this.identity = response.usuario;
-          //console.log('Ojo' + response);
-
-          // console.log('Mi pana' + this.idtoken);
 
           console.log(response);
-          // this._router.navigate(['/request']);
 
-          // this.cerrar = response.usuario.google;
-          //console.log('CERRANDO ' + this.cerrar);
           if (!this.identity || !this.identity._id) {
             this.status = 'error';
             console.log(this.status);
@@ -142,7 +227,7 @@ export class LoginComponent implements OnInit {
             this.status = 'error';
           }
         }
-      );
+      );*/
 
       // console.log(this.us);
     });
@@ -219,10 +304,6 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }*/
 
-  goFB() {
-    this._router.navigate(['/facebook']);
-  }
-
   newAccount() {
     this._router.navigate(['/registro']);
   }
@@ -287,4 +368,7 @@ export class LoginComponent implements OnInit {
       }
     );
   } */
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
 }
