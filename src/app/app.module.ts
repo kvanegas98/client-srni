@@ -68,8 +68,8 @@ import { ErrorComponent } from './components/error/error.component';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            // provider: new FacebookLoginProvider('301893964236415'),
-            provider: new FacebookLoginProvider('617948235495154'),
+            provider: new FacebookLoginProvider('301893964236415'),
+            // provider: new FacebookLoginProvider('617948235495154'),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,
